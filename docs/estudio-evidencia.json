@@ -89,6 +89,14 @@
         "actualizacion_declarada": "No indicada",
         "tarifas": [
           {
+            "servicio": "Alisado de gotelé, acabado preparado para pintar",
+            "min": 12,
+            "max": 22,
+            "unidad": "m² de superficie tratada",
+            "iva": "incluido",
+            "materiales": "Incluidos; no asumir pintura final incluida"
+          },
+          {
             "servicio": "Pintura de vivienda",
             "min": 6,
             "max": 12,
@@ -327,6 +335,26 @@
         ],
         "lectura": "Prueba un formato de salida+especialidad con vigencia expresa. No usar el tutorial como precio de instalación de suelo.",
         "fiabilidad": "Primaria y fechada para una promoción concreta; servicio distinto del manitas general."
+      },
+      {
+        "id": "prosuelos-laminado",
+        "nombre": "Prosuelos · oferta de laminado instalado",
+        "url": "https://prosuelos.net/2025/09/30/oferta-en-suelo-laminado-quick-step-classic-ac4-con-instalacion-incluida-oferta-valida-hasta-el-31-07-2021/",
+        "tipo": "Web propia de proveedor con dirección y servicio en Sevilla",
+        "fecha_consulta": "2026-10-09",
+        "actualizacion_declarada": "30/04/2026; título válido hasta 31/12/2026. La URL conserva otra fecha antigua.",
+        "tarifas": [
+          {
+            "servicio": "Quick-Step Classic AC4 suministrado e instalado",
+            "min": 54.71,
+            "max": 54.71,
+            "unidad": "m²",
+            "iva": "no incluido",
+            "minimo": "60 m²",
+            "materiales": "Incluye laminado, rodapiés y perfiles; anuncia cepillado de puertas."
+          }
+        ],
+        "limites": "No especifica retirada, nivelación, traslado de muebles ni facturación de merma. No es precio de solo mano de obra ni media del mercado."
       }
     ],
     "sintesis": {
@@ -593,5 +621,26 @@
       }
     ]
   },
-  "visualCredits": "assets/study/credits.json"
+  "visualCredits": "assets/study/credits.json",
+  "surfaceModel": {
+    "description": "Ejemplo propio de presupuesto por superficie; entradas sin IVA deducible. Aportación antes de gastos fijos, RETA, IRPF y reservas, no beneficio neto.",
+    "defaults": {
+      "area": 100,
+      "rate": 10,
+      "supplements": 0,
+      "materials": 200,
+      "otherCosts": 50,
+      "luisHours": 16,
+      "linoHours": 16,
+      "target": 25
+    },
+    "formulas": {
+      "revenue": "area × rate + supplements",
+      "personHours": "luisHours + linoHours",
+      "contribution": "revenue − materials − otherCosts",
+      "minimumRate": "máximo(0, (materials + otherCosts + personHours × target − supplements) / area); cotización redondeada al alza al céntimo"
+    },
+    "vat": "Ejemplo de PVP al 21 %, no determinación del tipo aplicable.",
+    "comparison": "Objetivo por hora total del encargo; no es la tarifa de mano de obra por hora productiva del simulador mensual."
+  }
 }

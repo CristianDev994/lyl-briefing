@@ -1,4 +1,9 @@
 'use strict';
+// Fragment navigation can focus a whole panel. Show its ring only for keyboard use.
+document.addEventListener('keydown', event => {
+  if (['Tab', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) document.documentElement.classList.add('keyboard-navigation');
+}, true);
+document.addEventListener('pointerdown', () => document.documentElement.classList.remove('keyboard-navigation'), true);
 const buttons=[...document.querySelectorAll('[data-tab]')];
 function showTab(id,focus=false){if(!document.getElementById('tab-'+id))id='decision';buttons.forEach(b=>{const active=b.dataset.tab===id;b.setAttribute('aria-selected',String(active));b.tabIndex=active?0:-1;document.getElementById(b.dataset.tab).hidden=!active;if(active&&focus)b.focus()});try{history.replaceState(null,'','#'+id)}catch(_){} }
 buttons.forEach((b,i)=>{b.addEventListener('click',()=>showTab(b.dataset.tab));b.addEventListener('keydown',e=>{let n;if(e.key==='ArrowRight')n=(i+1)%buttons.length;if(e.key==='ArrowLeft')n=(i-1+buttons.length)%buttons.length;if(e.key==='Home')n=0;if(e.key==='End')n=buttons.length-1;if(n!==undefined){e.preventDefault();showTab(buttons[n].dataset.tab,true)}})});
@@ -72,5 +77,64 @@ let opened=[];window.addEventListener('beforeprint',()=>{opened=[...document.que
   form.addEventListener('submit', event => event.preventDefault());
   document.querySelectorAll('[data-scenario]').forEach(button => button.addEventListener('click', () => { const preset = model.scenarios.find(s => s.id === button.dataset.scenario); if (preset) { fill(preset); render(); } }));
   byId('profit-reset').addEventListener('click', () => { fill(model.scenarios.find(s => s.id === 'base')); render(); });
+  render();
+})();
+
+// Surface quotations use total job hours and their own local draft.
+(() => {
+  const model = window.LYLSurface;
+  const form = document.getElementById('surface-form');
+  if (!model || !form) return;
+  const key = 'lyl-study-surface-v1';
+  const names = Object.keys(model.bounds);
+  const byId = id => document.getElementById(id);
+  const status = byId('surface-storage');
+  let storageAvailable = true;
+  function fill(values) { names.forEach(name => { byId('surface-' + name).value = values[name]; }); }
+  function render() {
+    const values = Object.fromEntries(names.map(name => [name, Number(byId('surface-' + name).value)]));
+    const invalid = names.filter(name => {
+      const field = byId('surface-' + name);
+      const bad = field.value === '' || !field.validity.valid;
+      field.setAttribute('aria-invalid', String(bad));
+      return bad;
+    });
+    const result = model.calculate(values);
+    const error = byId('surface-error');
+    if (invalid.length || !result.valid) {
+      byId('surface-output').hidden = true;
+      error.hidden = false;
+      error.textContent = 'Completa los campos dentro de sus límites. La superficie y el precio deben ser mayores que cero, y al menos uno de los dos debe tener horas de trabajo.';
+      if (result.errors?.includes('personHours')) ['luisHours', 'linoHours'].forEach(name => byId('surface-' + name).setAttribute('aria-invalid', 'true'));
+      status.textContent = 'Los valores incompletos no sustituyen el último ejemplo guardado.';
+      return;
+    }
+    error.hidden = true;
+    byId('surface-output').hidden = false;
+    byId('surface-output').querySelectorAll('[data-surface]').forEach(node => {
+      const name = node.dataset.surface;
+      node.textContent = name === 'personHours' ? dec(result[name]) + ' h' : euro(result[name]) + (name === 'quotedMinimumRate' ? '/m²' : name === 'perHour' ? '/h' : '');
+    });
+    const explanation = result.contribution < 0
+      ? 'El presupuesto no cubre ni los costes directos del encargo.'
+      : result.shortfall > 0.005
+        ? 'Faltan ' + euro(result.shortfall) + ' sin IVA para alcanzar el objetivo indicado.'
+        : 'El presupuesto alcanza el objetivo indicado por hora-persona total.';
+    byId('surface-verdict').textContent = explanation + ' Revisa las horas y el alcance antes de comprometer el precio.';
+    try { localStorage.setItem(key, JSON.stringify({ version: 1, values })); storageAvailable = true; }
+    catch (_) { storageAvailable = false; }
+    status.textContent = storageAvailable
+      ? 'Ejemplo guardado solo en este navegador. No modifica los cuestionarios ni el escenario mensual.'
+      : 'El navegador no permite guardar el ejemplo; solo se conserva mientras esta página siga abierta.';
+  }
+  let restored = false;
+  try {
+    const stored = JSON.parse(localStorage.getItem(key) || 'null');
+    if (stored?.version === 1 && model.calculate(stored.values).valid) { fill(stored.values); restored = true; }
+  } catch (_) { storageAvailable = false; }
+  if (!restored) fill(model.defaults);
+  form.addEventListener('input', render);
+  form.addEventListener('submit', event => event.preventDefault());
+  byId('surface-reset').addEventListener('click', () => { fill(model.defaults); render(); });
   render();
 })();

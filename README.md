@@ -12,6 +12,7 @@ GitHub Pages publica exclusivamente `docs/`, desde la rama `main`. La web no nec
 - `docs/cv-store.js`: CV local por persona y paquete ZIP de respuestas + CV.
 - `docs/estudio.html`: estudio de mercado.
 - `docs/estudio.css` y `docs/estudio.js`: presentación y controles del estudio.
+- `docs/surface.js`: presupuesto por m², costes directos y horas individuales, con redondeo al alza del precio necesario.
 - `docs/economics.js`: modelo reproducible de capacidad y caja de dos autónomos.
 - `docs/estudio-evidencia.json`: fuentes, límites y supuestos de precios y fiscalidad.
 - `docs/assets/study/`: fotografías WebP, SVG y créditos/licencias locales.
@@ -54,10 +55,12 @@ Las pruebas usan exclusivamente identidades de ejemplo y adjuntos sintéticos. C
 
 ## Estudio económico y recursos visuales
 
-El estudio distingue datos oficiales, tarifas anunciadas y propuestas propias. Compara 11 páginas comerciales, conserva las discrepancias de IVA/alcance/fecha y enlaza las fuentes. No presenta las tarifas publicadas como operaciones cobradas ni una muestra estadística del mercado.
+El estudio distingue datos oficiales, tarifas anunciadas y propuestas propias. Compara 12 páginas comerciales, conserva las discrepancias de IVA/alcance/fecha y enlaza las fuentes. No presenta las tarifas publicadas como operaciones cobradas ni una muestra estadística del mercado.
 
 Cuatro escenarios modificables separan horas-persona, materiales, facturación sin IVA, gastos, dos cuotas RETA y reservas. Los ingresos se producen durante los meses equivalentes de actividad indicados; estructura y RETA se pagan durante 12 meses. La provisión para IRPF es una hipótesis de caja, no un impuesto calculado. Apartar reserva operativa no crea un gasto fiscal. El reparto 50/50 y los costes son supuestos que se deben revisar con Luis y Lino. No hay promesa de demanda ni de ingresos.
 
 Los cambios del simulador se guardan localmente con una clave distinta de los cuestionarios. Fotos Unsplash y diez iconos Lucide con sus licencias se sirven localmente. No se añade ningún CDN, analítica ni petición externa al cargar. Las fotos son de recurso, nunca trabajos atribuidos a L&L. Procedencia, transformación y hashes: `docs/assets/study/credits.json`.
 
 Validación: `node tests/economics.cjs` para cálculos independientes y límites; `node tests/estudio.cjs` para navegador, escenarios, navegación, imágenes, privacidad y móvil. `node tests/briefing.cjs` mantiene la comprobación del cuestionario individual. Las pruebas de navegador requieren Playwright y Chrome local; no son dependencias del sitio público.
+
+El presupuesto por m² usa una clave local separada (`lyl-study-surface-v1`). Los materiales son coste: no se añaden otra vez al ingreso si ya están incluidos en el precio. Las horas de Luis y Lino se suman, y el IVA se muestra fuera del margen. Su objetivo por hora total no equivale a la tarifa por hora productiva del modelo mensual. Pruebas: `node tests/surface.cjs`. Los créditos y licencias se conservan en los archivos de recursos, sin pies sobre las fotografías.

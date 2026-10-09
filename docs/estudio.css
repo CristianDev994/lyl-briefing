@@ -4,6 +4,12 @@
 @media print{body{background:white;font-size:11pt}header,main{max-width:none}nav,.header-actions,.btn,.copy-feedback,.progress-row, .no-print{display:none!important}.tab[hidden]{display:block!important}.tab{display:block!important;break-before:page;margin-top:20px}.tab:first-child{break-before:auto}.masthead{padding:0 0 16px}.logo{width:80px;height:80px}main{padding:0}.lead{grid-template-columns:1.5fr 1fr}.grid3{grid-template-columns:repeat(3,1fr)}.grid2{grid-template-columns:1fr 1fr}.statement,.result{background:#edf0f2;color:#20272c}.statement .small,.result .small,.result .muted{color:#40494f}.statement .eyebrow{color:#725025}.table-wrap{overflow:visible}table{min-width:0!important;font-size:10pt}h2,h3{break-after:avoid}.card,.step,.stat,.copybox{break-inside:avoid}a{color:#214d64}.sources{columns:1}.footer{font-size:10pt}details>div{display:block!important}}
 
 /* Study presentation: local photographs, restrained gold, readable figures. */
+.tab:focus { outline: none; }
+.keyboard-navigation .tab:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+.surface-references { margin: 20px 0 28px; }
+.surface-references .num { margin-bottom: 12px; }
+.surface-calculator { margin: 24px 0; }
+#surface-storage { margin-top: 14px; }
 :root {
   --wash: #f6f5f2;
   --ink: #1d272d;

@@ -19,6 +19,7 @@ const golden = {
   exigente: { revenue: 13245, billable: 256, nonBillable: 64, monthlyBeforeIRPF: 9199.40, annualRevenue: 145695, perPersonBeforeIRPF: 4124.725, perPersonAfterProvision: 3299.78, requiredRate: 30.724651, requiredUtilization: 54.621603 }
 };
 const simple = { days: 10, hours: 6, utilization: 50, rate: 40, materials: 0, markup: 0, fixed: 0, reta: 0, contingency: 0, months: 12, taxReserve: 0, incomeGoal: 1200 };
+const surfaceDefault = { surfaceRevenue: 1000, revenue: 1000, vat: 210, totalWithVAT: 1210, personHours: 32, costs: 250, contribution: 750, perHour: 23.4375, minimumRevenue: 1050, quotedMinimumRate: 10.5 };
 async function test(name, action) {
   const started = Date.now();
   try { await action(); results.push({ name, status: 'PASS', ms: Date.now() - started }); console.log('PASS ' + name); }
@@ -56,6 +57,20 @@ async function expectOutputs(page, expected, label) {
 }
 async function setProfit(page, values) {
   for (const [key, value] of Object.entries(values)) await page.locator('#profit-' + key).fill(String(value));
+}
+async function setSurface(page, values) {
+  for (const [key, value] of Object.entries(values)) await page.locator('#surface-' + key).fill(String(value));
+}
+async function expectSurface(page, expected, label) {
+  assert.equal(await page.locator('#surface-error').isVisible(), false, label + ': no validation error.');
+  assert.equal(await page.locator('#surface-output').isVisible(), true, label + ': results visible.');
+  for (const [key, value] of Object.entries(expected)) {
+    const text = await page.locator('#surface-output [data-surface="' + key + '"]').innerText();
+    const decimals = text.match(/,([0-9]+)/);
+    const tolerance = decimals ? 0.5 / Math.pow(10, decimals[1].length) + 0.00001 : 0.50001;
+    assert.ok(Math.abs(spanishNumber(text) - value) <= tolerance, label + ' ' + key + ': expected ' + value + ', got ' + text);
+  }
+  assert.doesNotMatch(await page.locator('#surface-output').innerText(), /NaN|Infinity|undefined/);
 }
 
 (async () => {
@@ -121,6 +136,13 @@ async function setProfit(page, values) {
       }
       await showTab(page, 'beneficios'); await page.locator('#beneficios').scrollIntoViewIfNeeded();
       if (width !== 320) await page.screenshot({ path: path.join(output, 'estudio-' + width + '-beneficios.png'), fullPage: true });
+      await showTab(page, 'numeros');
+      await expectSurface(page, surfaceDefault, width + 'px surface defaults');
+      if (width !== 320) {
+        await page.evaluate(() => scrollTo(0, 0));
+        await page.screenshot({ path: path.join(output, 'estudio-' + width + '-cotizar-viewport.png'), fullPage: false });
+        await page.locator('#surface-output').screenshot({ path: path.join(output, 'estudio-' + width + '-superficie-resultados.png') });
+      }
     });
 
     await test('Direct benefit links, invalid hashes and keyboard navigation', async () => {
@@ -136,6 +158,118 @@ async function setProfit(page, values) {
       await page.evaluate(() => { location.hash = '#does-not-exist'; });
       await page.waitForFunction(() => location.hash === '#decision');
       assert.equal(await page.locator('#decision').isVisible(), true);
+    });
+
+    await test('Pointer and fragment navigation leave panels unoutlined; keyboard focus remains visible', async () => {
+      const { page } = await open({ width: 1440, hash: '#decision' });
+      const outline = locator => locator.evaluate(node => ({ style: getComputedStyle(node).outlineStyle, width: parseFloat(getComputedStyle(node).outlineWidth) }));
+      assert.equal((await outline(page.locator('#decision'))).style, 'none');
+      await page.reload({ waitUntil: 'networkidle' });
+      assert.equal((await outline(page.locator('#decision'))).style, 'none');
+      await page.locator('#decision .hero-copy h2').click();
+      assert.equal((await outline(page.locator('#decision'))).style, 'none');
+      assert.equal(await page.locator('html').evaluate(node => node.classList.contains('keyboard-navigation')), false);
+      await page.locator('#tab-decision').focus();
+      await page.keyboard.press('Tab');
+      assert.equal(await page.locator('#decision').evaluate(node => node === document.activeElement), true);
+      assert.equal(await page.locator('html').evaluate(node => node.classList.contains('keyboard-navigation')), true);
+      const panelRing = await outline(page.locator('#decision'));
+      assert.equal(panelRing.style, 'solid'); assert.ok(panelRing.width >= 2);
+      await page.locator('#decision .hero-copy h2').click();
+      assert.equal((await outline(page.locator('#decision'))).style, 'none');
+      assert.equal(await page.locator('html').evaluate(node => node.classList.contains('keyboard-navigation')), false);
+      await showTab(page, 'numeros');
+      await page.locator('#tab-numeros').focus(); await page.keyboard.press('Tab');
+      assert.equal(await page.locator('#numeros').evaluate(node => node === document.activeElement), true);
+      await page.locator('#surface-area').focus();
+      const inputRing = await outline(page.locator('#surface-area'));
+      assert.equal(inputRing.style, 'solid'); assert.ok(inputRing.width >= 2, 'Normal form controls retain a visible keyboard focus ring.');
+    });
+
+    await test('Surface quote separates customer VAT, material costs and both owners hours', async () => {
+      const { page } = await open({ hash: '#numeros' });
+      await expectSurface(page, surfaceDefault, '100 m² default');
+      assert.match(await page.locator('#surface-output').innerText(), /No es beneficio neto ni sueldo/);
+      assert.match(await page.locator('#surface-verdict').innerText(), /50,00/);
+      await setSurface(page, { supplements: 100 });
+      await expectSurface(page, { surfaceRevenue: 1000, revenue: 1100, vat: 231, totalWithVAT: 1331, costs: 250, contribution: 850, personHours: 32, minimumRevenue: 1050, quotedMinimumRate: 9.5 }, 'extras are sale, materials remain a cost');
+      await setSurface(page, { luisHours: 12, linoHours: 8 });
+      await expectSurface(page, { personHours: 20, perHour: 42.5, minimumRevenue: 750, quotedMinimumRate: 6.5 }, 'unequal workloads');
+      await setSurface(page, { luisHours: 10, linoHours: 0 });
+      await expectSurface(page, { personHours: 10, perHour: 85, minimumRevenue: 500, quotedMinimumRate: 4 }, 'Luis alone');
+      await setSurface(page, { luisHours: 0, linoHours: 10 });
+      await expectSurface(page, { personHours: 10, perHour: 85 }, 'Lino alone');
+      await page.locator('#surface-reset').click();
+      await expectSurface(page, surfaceDefault, 'surface reset');
+    });
+
+    await test('Surface quote shows losses, zero required area charge and cents rounded upward', async () => {
+      const { page } = await open({ hash: '#numeros' });
+      await setSurface(page, { rate: 2 });
+      await expectSurface(page, { revenue: 200, contribution: -50, perHour: -1.5625 }, 'loss');
+      assert.match(await page.locator('#surface-verdict').innerText(), /no cubre ni los costes directos/i);
+      await page.locator('#surface-reset').click();
+      await setSurface(page, { supplements: 1050 });
+      await expectSurface(page, { revenue: 2050, minimumRevenue: 1050, quotedMinimumRate: 0 }, 'extras cover the target');
+      await setSurface(page, { area: 3, rate: 1, supplements: 0, materials: 0, otherCosts: 0, luisHours: 1, linoHours: 0, target: 1 });
+      await expectSurface(page, { personHours: 1, minimumRevenue: 1, quotedMinimumRate: 0.34 }, 'round up one third of a euro');
+    });
+
+    await test('Invalid area quotes hide old results, flag zero owner hours and recover on reset', async () => {
+      const { page } = await open({ hash: '#numeros' });
+      for (const [key, value] of [['area', '0'], ['rate', ''], ['supplements', '-1'], ['materials', '-1'], ['luisHours', '10001'], ['target', '201']]) {
+        await page.locator('#surface-reset').click(); await page.locator('#surface-' + key).fill(value);
+        assert.equal(await page.locator('#surface-error').isVisible(), true, key + '=' + value);
+        assert.equal(await page.locator('#surface-output').isVisible(), false);
+        assert.equal(await page.locator('#surface-' + key).getAttribute('aria-invalid'), 'true');
+        assert.doesNotMatch(await page.locator('#numeros').innerText(), /NaN|Infinity|undefined/);
+      }
+      await page.locator('#surface-reset').click();
+      await setSurface(page, { luisHours: 0, linoHours: 0 });
+      assert.equal(await page.locator('#surface-output').isVisible(), false);
+      assert.equal(await page.locator('#surface-error').isVisible(), true);
+      for (const name of ['luisHours', 'linoHours']) assert.equal(await page.locator('#surface-' + name).getAttribute('aria-invalid'), 'true');
+      await page.locator('#surface-reset').click(); await expectSurface(page, surfaceDefault, 'invalid surface recovery');
+    });
+
+    await test('Area quote saves its last valid inputs without changing monthly or personal drafts', async () => {
+      const { page } = await open({ hash: '#beneficios' });
+      const ownerDrafts = { 'lyl-briefing-v2-luis': '{"synthetic":"Luis surface test"}', 'lyl-briefing-v2-lino': '{"synthetic":"Lino surface test"}' };
+      await page.evaluate(values => { for (const [key, value] of Object.entries(values)) localStorage.setItem(key, value); }, ownerDrafts);
+      await setProfit(page, simple);
+      const monthly = await page.evaluate(() => localStorage.getItem('lyl-study-economics-v1'));
+      await showTab(page, 'numeros');
+      const quote = { area: 50, rate: 20, supplements: 100, materials: 200, otherCosts: 50, luisHours: 12, linoHours: 8, target: 25 };
+      await setSurface(page, quote);
+      assert.deepEqual(await page.evaluate(() => JSON.parse(localStorage.getItem('lyl-study-surface-v1'))), { version: 1, values: quote });
+      await page.locator('#surface-area').fill('');
+      assert.equal(await page.locator('#surface-output').isVisible(), false);
+      await page.reload({ waitUntil: 'networkidle' });
+      await expectSurface(page, { revenue: 1100, contribution: 850, personHours: 20, perHour: 42.5, quotedMinimumRate: 13 }, 'restored last valid area quote');
+      assert.equal(await page.locator('#surface-area').inputValue(), '50');
+      assert.equal(await page.evaluate(() => localStorage.getItem('lyl-study-economics-v1')), monthly);
+      for (const [key, value] of Object.entries(ownerDrafts)) assert.equal(await page.evaluate(name => localStorage.getItem(name), key), value);
+      await page.locator('#surface-reset').click(); await expectSurface(page, surfaceDefault, 'reset is isolated');
+      assert.equal(await page.evaluate(() => localStorage.getItem('lyl-study-economics-v1')), monthly);
+      for (const [key, value] of Object.entries(ownerDrafts)) assert.equal(await page.evaluate(name => localStorage.getItem(name), key), value);
+      for (const stored of ['{bad json', '{"version":1,"values":{"area":-1}}']) {
+        await page.evaluate(value => localStorage.setItem('lyl-study-surface-v1', value), stored);
+        await page.reload({ waitUntil: 'networkidle' }); await expectSurface(page, surfaceDefault, 'corrupt area draft recovery');
+      }
+      await showTab(page, 'beneficios');
+      await expectOutputs(page, { revenue: 2400, billable: 60, perPersonAfterProvision: 1200 }, 'monthly example remains unchanged');
+    });
+
+    await test('Area quote remains usable when storage is blocked and states its limit', async () => {
+      const { page, errors } = await open({ hash: '#numeros', storageBlocked: true });
+      await expectSurface(page, surfaceDefault, 'storage blocked defaults');
+      assert.match(await page.locator('#surface-storage').innerText(), /no permite guardar.*abierta/i);
+      await setSurface(page, { rate: 12 });
+      await expectSurface(page, { revenue: 1200, contribution: 950 }, 'storage blocked edit');
+      assert.match(await page.locator('#surface-storage').innerText(), /no permite guardar/i);
+      await page.reload({ waitUntil: 'networkidle' });
+      await expectSurface(page, surfaceDefault, 'blocked storage cannot promise restored draft');
+      assert.deepEqual(errors, []);
     });
 
     await test('Default financial outputs match a fully worked two-person example', async () => {
@@ -267,8 +401,10 @@ async function setProfit(page, values) {
       const renderedIcons = await page.locator('img[src*="assets/study/icons/"]').count();
       assert.ok(renderedIcons >= 9, 'The interface should actually display its local icons.');
       await showTab(page, 'fuentes');
-      assert.ok(await page.locator('#fuentes a[href*="credits"]').count() >= 1, 'Credits must be accessible from the study.');
-      assert.match(await page.locator('#fuentes').innerText(), /recurso|ilustrativ|portfolio/i, 'Resource photos must not be presented as L&L projects.');
+      assert.equal(await page.locator('figcaption').count(), 0, 'Visible photo credits were removed at the user request.');
+      assert.doesNotMatch(await page.locator('body').textContent(), /Unsplash/i, 'The study does not show stock-photo source labels.');
+      await showTab(page, 'decision');
+      for (const picture of await pictures.all()) assert.equal(await picture.isVisible(), true, 'Removing credit labels must keep every photo visible.');
     });
 
     await test('Print exposes all sections and restores collapsed details afterwards', async () => {
