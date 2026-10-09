@@ -1,417 +1,158 @@
-/* Cuestionario de L&L para preparar la web con su desarrollador. */
+/* Respuestas individuales de Luis y Lino para preparar la web de L&L. */
 window.LYL_QUESTIONS = {
-  version: '1',
+  version: '2',
   steps: [
     {
-      id: 'negocio',
-      title: 'Conocemos vuestro negocio',
-      intro: 'Estas respuestas ayudarán a quien prepara vuestra web. No es un formulario para pedir una reparación. Podéis responder «No lo sé todavía» cuando falte una decisión.',
+      id: 'experiencia', title: 'Tu experiencia',
+      intro: 'Responde por ti, aunque todavía no lo hayas hablado con tu socio. Queremos conocer lo que tú has hecho y lo que aportarás a L&L. Unas frases bastan; el currículum es opcional.',
       fields: [
         {
-          id: 'nombre_publico',
-          label: '¿Qué nombre queréis mostrar en la web?',
-          type: 'text',
-          required: true,
-          placeholder: 'Por ejemplo: L&L Multiservicios',
-          help: 'Escribe el nombre comercial tal como debería verlo un cliente.'
+          id: 'anos_experiencia', label: '¿Cuánto tiempo llevas haciendo montajes, arreglos o reformas?',
+          type: 'select', required: true,
+          options: ['Estoy empezando', 'Menos de 1 año', 'Entre 1 y 3 años', 'Entre 4 y 10 años', 'Más de 10 años'],
+          help: 'Cuenta tu experiencia anterior a L&L, también por cuenta ajena o en proyectos propios.'
         },
         {
-          id: 'persona_contacto',
-          label: '¿Quién coordinará la web con el desarrollador?',
-          type: 'text',
-          required: true,
-          placeholder: 'Nombre y, si hace falta, cómo prefieres que te llamemos',
-          help: 'Este contacto es para preparar el proyecto; no se publicará por defecto.'
+          id: 'experiencia_personal', label: 'Un trabajo que hayas hecho tú y del que estés satisfecho',
+          type: 'textarea', required: false,
+          placeholder: 'Ej.: monté una cocina. Yo hice los muebles y ajustes; otra persona conectó las instalaciones.',
+          help: 'Opcional. Cuenta qué hiciste tú, si lo resolviste solo o con ayuda y cómo quedó. Puede ser anterior a L&L; no hacen falta nombres de clientes.'
         },
         {
-          id: 'telefono_coordinacion',
-          label: 'Teléfono para coordinar la web',
-          type: 'tel',
-          required: false,
-          placeholder: 'Tu número de contacto',
-          help: 'Opcional. Puedes dejarlo vacío si el desarrollador ya tiene tu contacto. El teléfono público se pregunta al final.'
+          id: 'experiencia_juntos', label: '¿Qué habéis hecho ya Luis y Lino juntos?',
+          type: 'textarea', required: false,
+          placeholder: 'Ej.: pintamos un piso. Yo preparé y pinté las paredes; mi socio reparó los desperfectos.',
+          help: 'Opcional. Un ejemplo y tu parte del trabajo bastan. Si aún no habéis trabajado juntos, puedes escribirlo o dejarlo vacío.'
         },
         {
-          id: 'email_coordinacion',
-          label: 'Correo para coordinar la web',
-          type: 'email',
-          required: false,
-          placeholder: 'nombre@ejemplo.es',
-          help: 'Opcional. No se mostrará en la web por defecto.'
-        },
-        {
-          id: 'municipio_base',
-          label: '¿Desde qué municipio soléis salir a trabajar?',
-          type: 'text',
-          required: true,
-          placeholder: 'Municipio o zona de Sevilla',
-          help: 'Solo municipio o barrio de referencia. No necesitamos vuestra dirección particular.'
+          id: 'curriculum', label: 'Tu currículum, si lo tienes a mano',
+          type: 'cv', required: false,
+          help: 'Opcional. Nos ayuda a conocer tu trayectoria sin volver a escribirla. Puedes continuar sin él; su contenido no se publicará en la web.'
         }
       ]
     },
     {
-      id: 'cobertura',
-      title: 'Dónde queréis trabajar',
-      intro: 'Atender toda Sevilla no obliga a aceptar todos los desplazamientos. Estas respuestas nos ayudarán a elegir las zonas y los encargos que más os convienen.',
+      id: 'habilidades', title: 'Lo que sabes hacer',
+      intro: 'Marca lo que puedes resolver personalmente. No pasa nada si algunas tareas las hace tu socio o necesitas ayuda: eso también nos sirve para organizar bien la oferta.',
       fields: [
         {
-          id: 'zonas_prioritarias',
-          label: '¿En qué barrios o municipios preferís conseguir trabajos?',
-          type: 'textarea',
-          required: true,
-          placeholder: 'Indica primero vuestras zonas preferidas y después otras que atendéis.',
-          help: 'Si todavía no lo tenéis claro, escribe «Por decidir». No hace falta enumerar toda la provincia.'
+          id: 'servicios_autonomos', label: '¿Qué tareas puedes hacer por tu cuenta con confianza?',
+          type: 'checkboxes', required: true,
+          options: [
+            'Montar y desmontar muebles', 'Colocar estanterías, barras y accesorios',
+            'Ajustar puertas, persianas y herrajes', 'Pintar y dar repasos',
+            'Hacer pequeñas reparaciones de albañilería', 'Colocar suelos, revestimientos o azulejos',
+            'Renovar sellados y juntas', 'Hacer reparaciones de fontanería',
+            'Realizar trabajos de electricidad', 'Preparar una vivienda para entrar a vivir',
+            'Otras tareas: las explico debajo', 'No lo sé todavía; necesito concretarlo'
+          ],
+          help: 'Puedes marcar varias. Esto describe tu experiencia; antes de ofrecer un servicio concretaremos su alcance y la formación o habilitación necesaria.'
         },
         {
-          id: 'desplazamiento_maximo',
-          label: '¿Cuánto tiempo de viaje os encaja por trayecto?',
-          type: 'select',
-          required: true,
-          options: [
-            'Hasta 20 minutos desde nuestra base',
-            'Hasta 40 minutos desde nuestra base',
-            'Hasta 60 minutos desde nuestra base',
-            'Depende del tamaño del trabajo',
-            'No lo sé todavía'
-          ],
-          help: 'Es una orientación para planificar la captación, no una promesa que vayamos a publicar.'
+          id: 'servicios_preferidos', label: '¿Qué tarea se te da mejor o te gustaría hacer más?',
+          type: 'text', required: false,
+          placeholder: 'Ej.: montar muebles, especialmente cocinas y armarios.',
+          help: 'Opcional. Aquí también puedes añadir una habilidad que no aparezca en la lista.'
         },
         {
-          id: 'politica_desplazamiento',
-          label: '¿Cómo tratáis las visitas y los desplazamientos?',
-          type: 'select',
-          required: true,
-          options: [
-            'Los incluimos en el presupuesto acordado',
-            'Cobramos desplazamiento según la zona',
-            'Pedimos un importe mínimo de trabajo',
-            'Lo valoramos caso por caso antes de ir',
-            'No lo hemos decidido todavía'
-          ],
-          help: 'Después podremos concretar importes. Evitaremos anunciar visitas gratis si no lo habéis decidido.'
+          id: 'limites_personales', label: '¿Qué prefieres dejar a tu socio, hacer con ayuda o no aceptar?',
+          type: 'textarea', required: false,
+          placeholder: 'Ej.: para colocar muebles altos necesito ayuda. No hago instalaciones de gas.',
+          help: 'Opcional. Nos ayudará a evitar consultas para trabajos que no te encajen.'
         },
         {
-          id: 'clientes_preferidos',
-          label: '¿Para quién os gustaría trabajar?',
-          type: 'checkboxes',
-          required: true,
-          options: [
-            'Particulares que necesitan arreglos en casa',
-            'Personas que acaban de comprar o alquilar una vivienda',
-            'Propietarios que preparan una vivienda para alquilar',
-            'Inmobiliarias',
-            'Administradores de fincas y comunidades',
-            'Comercios y pequeños negocios',
-            'Tiendas que necesitan un servicio de montaje',
-            'No lo sé todavía'
-          ],
-          help: 'Marca los tipos de cliente que os interesan de verdad. Podemos empezar por uno o dos.'
+          id: 'formacion', label: '¿Tienes formación, cursos o habilitaciones relacionados?',
+          type: 'text', required: false,
+          placeholder: 'Nombre del curso o título, «Está en mi CV» o «No tengo».',
+          help: 'Opcional. No necesitamos números de identificación. Antes de mencionar una acreditación en la web, la revisaremos contigo.'
         }
       ]
     },
     {
-      id: 'servicios',
-      title: 'Qué hacéis bien',
-      intro: 'Queremos presentar servicios concretos que podáis cumplir entre los dos. La web no prometerá trabajos ni acreditaciones que no hayáis confirmado.',
+      id: 'disponibilidad', title: 'Tu día a día',
+      intro: 'Piensa en tu disponibilidad real ahora, no en la de los dos juntos. Son referencias para organizar el trabajo; no se publicarán como compromisos.',
       fields: [
         {
-          id: 'servicios_dominados',
-          label: '¿Qué trabajos podéis ofrecer con confianza?',
-          type: 'checkboxes',
-          required: true,
-          options: [
-            'Montaje y desmontaje de muebles',
-            'Instalación de estanterías, barras y accesorios',
-            'Ajustes de puertas, persianas y herrajes',
-            'Pintura y repasos',
-            'Pequeños trabajos de albañilería',
-            'Suelos, revestimientos y alicatados',
-            'Sellados y juntas',
-            'Reparaciones de fontanería',
-            'Trabajos de electricidad',
-            'Puesta a punto de viviendas',
-            'Otros: los explico en la siguiente respuesta',
-            'Aún debemos definirlo'
-          ],
-          help: 'Marca solo tareas que dominéis y que podáis realizar con las habilitaciones que correspondan.'
+          id: 'disponibilidad_personal', label: '¿Cuánto tiempo puedes dedicar a L&L cada semana?',
+          type: 'select', required: true,
+          options: ['Algún rato o un trabajo pequeño', '1 o 2 días', '3 o 4 días', 'La semana laboral completa', 'Depende de mis otros trabajos', 'No lo sé todavía']
         },
         {
-          id: 'servicios_prioritarios',
-          label: '¿Qué tres trabajos os gustaría recibir primero?',
-          type: 'textarea',
-          required: true,
-          placeholder: '1. ...  2. ...  3. ...',
-          help: 'Piensa en trabajos que hagáis bien, os compensen y podáis terminar con vuestro equipo. También vale «Necesitamos decidirlo».'
+          id: 'horario_personal', label: '¿En qué momentos sueles poder trabajar?',
+          type: 'checkboxes', required: true,
+          options: ['Entre semana por la mañana', 'Entre semana por la tarde', 'Los sábados', 'Los domingos', 'Puedo adaptar mi horario según el encargo', 'No lo sé todavía'],
+          help: 'Marca lo que te encaje habitualmente. No implica ofrecer urgencias ni estar siempre disponible.'
         },
         {
-          id: 'servicios_excluidos',
-          label: '¿Qué trabajos no queréis o no podéis aceptar?',
-          type: 'textarea',
-          required: true,
-          placeholder: 'Tareas, tamaños de obra o situaciones que preferís evitar.',
-          help: 'Incluye servicios para los que necesitaríais a otro profesional. Si falta revisarlo, escribe «Por confirmar».'
+          id: 'zona_base_personal', label: '¿Desde qué municipio o zona saldrías a trabajar?',
+          type: 'text', required: false,
+          placeholder: 'Ej.: Sevilla Este, Dos Hermanas, Camas…',
+          help: 'Opcional. Solo municipio o barrio. Añade si hay alguna zona de Sevilla a la que te resulte difícil desplazarte.'
         },
         {
-          id: 'experiencia',
-          label: '¿Qué experiencia real tenéis?',
-          type: 'textarea',
-          required: true,
-          placeholder: 'Años aproximados, qué sabe hacer cada uno y uno o dos ejemplos de trabajos.',
-          help: 'Podéis estar empezando como empresa y tener experiencia previa. Contadlo con vuestras palabras.'
-        },
-        {
-          id: 'acreditaciones',
-          label: '¿Tenéis formación, habilitaciones o seguro que podamos mencionar?',
-          type: 'textarea',
-          required: false,
-          placeholder: 'Indica cuáles, «No tenemos» o «Tenemos que comprobarlo».',
-          help: 'Opcional. Solo se publicará lo que se pueda verificar. No adjuntes documentos ni escribas números de póliza o identificación.'
-        },
-        {
-          id: 'equipo_medios',
-          label: '¿Con qué medios contáis para trabajar?',
-          type: 'textarea',
-          required: false,
-          placeholder: 'Vehículo, herramientas, transporte de materiales o colaboradores habituales.',
-          help: 'Opcional. Indica si algún servicio depende de alquilar equipo o de otra persona.'
+          id: 'movilidad_personal', label: '¿Cómo te desplazarías a los trabajos?',
+          type: 'select', required: true,
+          options: ['Tengo vehículo y puedo llevar herramientas y materiales', 'Tengo vehículo, pero poco espacio para material', 'Necesitaría coordinar el transporte con mi socio', 'Puedo desplazarme por otros medios', 'No lo sé todavía']
         }
       ]
     },
     {
-      id: 'confianza',
-      title: 'Material para generar confianza',
-      intro: 'Las fotos y los trabajos reales nos ayudarán a explicar lo que hacéis. Aquí solo indicamos qué existe; no se suben imágenes ni documentos.',
+      id: 'aportaciones', title: 'Lo que puedes aportar',
+      intro: 'Además del oficio, cuentan tus herramientas, las fotos de tus trabajos y las personas que ya confían en ti. Este paso es opcional: marca solo lo que tengas claro.',
       fields: [
         {
-          id: 'fotos_disponibles',
-          label: '¿Tenéis fotos propias de trabajos realizados?',
-          type: 'radio',
-          required: true,
-          options: [
-            'Sí, tenemos fotos del antes y del después',
-            'Sí, tenemos algunas fotos de trabajos terminados',
-            'Todavía no, pero podemos empezar a hacerlas',
-            'Tenemos que revisarlo'
-          ],
-          help: 'No pasa nada si aún hay pocas. Es mejor empezar con material propio y claro.'
+          id: 'medios_personales', label: '¿Qué medios tuyos puedes aportar a los trabajos?',
+          type: 'checkboxes', required: false,
+          options: ['Herramientas de montaje y reparación', 'Equipo y herramientas de pintura', 'Herramientas de albañilería o revestimientos', 'Herramientas para otro oficio', 'Escaleras y equipo de acceso', 'Un lugar para guardar herramientas o material', 'Contactos de profesionales que pueden colaborar', 'No lo sé todavía; tengo que revisarlo'],
+          help: 'Opcional. No hace falta hacer un inventario ni comprar nada para responder.'
         },
         {
-          id: 'material_disponible',
-          label: '¿Qué otro material podéis entregar al desarrollador?',
-          type: 'checkboxes',
-          required: false,
-          options: [
-            'Logo en buena calidad',
-            'Una foto de los dos',
-            'Fotos trabajando',
-            'Fotos de herramientas o vehículo',
-            'Vídeos breves de trabajos',
-            'No tenemos más material todavía'
-          ],
-          help: 'Opcional. El desarrollador acordará con vosotros cómo recibir los archivos de forma privada.'
+          id: 'fotos_personales', label: '¿Tienes fotos de trabajos en los que hayas participado?',
+          type: 'radio', required: false,
+          options: ['Sí, del antes y del después', 'Sí, de algunos trabajos terminados', 'Tengo que buscarlas', 'Todavía no tengo'],
+          help: 'Opcional. Más adelante elegiremos fotos y comprobaremos los permisos. Esta respuesta no autoriza a publicarlas.'
         },
         {
-          id: 'resenas_casos',
-          label: '¿Tenéis reseñas o trabajos que merezca la pena mostrar?',
-          type: 'textarea',
-          required: false,
-          placeholder: 'Enlace público a reseñas o una breve descripción de uno o dos trabajos.',
-          help: 'Opcional. No copies conversaciones privadas ni datos de clientes. No inventaremos testimonios.'
+          id: 'fortalezas_personales', label: '¿Qué suelen valorar de tu forma de trabajar?',
+          type: 'checkboxes', required: false,
+          options: ['El cuidado de los acabados', 'La limpieza y el orden', 'La puntualidad y cumplir lo acordado', 'Explicar bien las opciones y el trabajo', 'Encontrar soluciones a los imprevistos', 'El trato cercano con el cliente', 'No lo sé todavía; prefiero ver ejemplos'],
+          help: 'Opcional. Elige lo que refleje tu experiencia, sin necesidad de buscar una frase publicitaria.'
         },
         {
-          id: 'permisos_material',
-          label: '¿Habéis confirmado que podéis publicar ese material?',
-          type: 'radio',
-          required: true,
-          options: [
-            'Sí, tenemos permiso y sabemos qué material se puede usar',
-            'Solo para parte del material; lo concretaremos',
-            'Necesitamos pedir permiso o revisarlo',
-            'Todavía no tenemos material para publicar'
-          ],
-          help: 'El permiso debe cubrir lo que se vea: trabajos, viviendas, personas y testimonios. Esta respuesta no sustituye la revisión de cada archivo.'
+          id: 'contactos_personales', label: '¿Por qué vías podrían llegarte trabajos a ti?',
+          type: 'checkboxes', required: false,
+          options: ['Personas para las que ya he trabajado', 'Familiares, amistades y conocidos', 'Otros profesionales de reformas u oficios', 'Inmobiliarias, comunidades o comercios conocidos', 'Mis redes sociales o grupos de mi zona', 'No lo sé todavía; estoy empezando de cero'],
+          help: 'Opcional. Solo necesitamos saber qué vías existen; no escribas nombres ni teléfonos de otras personas.'
         }
       ]
     },
     {
-      id: 'organizacion',
-      title: 'Cuánto trabajo podéis asumir',
-      intro: 'Buscamos consultas que podáis atender y trabajos que os compensen. Partimos de que sois dos y de que ahora no hay presupuesto para anuncios.',
+      id: 'prioridades', title: 'Cómo te imaginas L&L',
+      intro: 'Aquí importa tu opinión personal. Después compararemos vuestras respuestas para proponer servicios, reparto de tareas y una web que os represente a los dos.',
       fields: [
         {
-          id: 'capacidad_semanal',
-          label: '¿Qué hueco tenéis para nuevos trabajos cada semana?',
-          type: 'select',
-          required: true,
-          options: [
-            'Algún trabajo pequeño, además de lo que ya hacemos',
-            'Uno o dos días de trabajo entre los dos',
-            'Tres o cuatro días de trabajo entre los dos',
-            'La semana completa de los dos',
-            'Varía mucho; lo acordaremos según el encargo',
-            'No lo sé todavía'
-          ],
-          help: 'Pensad también en las horas de desplazamiento, compra de materiales y preparación de presupuestos.'
+          id: 'rol_personal', label: '¿Qué tareas te ves llevando además de hacer los trabajos?',
+          type: 'checkboxes', required: true,
+          options: ['Responder WhatsApp y llamadas', 'Visitar y valorar los trabajos', 'Preparar y explicar presupuestos', 'Organizar agenda, compras y materiales', 'Hacer fotos y pedir reseñas al terminar', 'Hablar con posibles colaboradores', 'Prefiero centrarme en ejecutar los trabajos', 'No lo sé todavía; quiero acordarlo con mi socio'],
+          help: 'Marca lo que te resulte cómodo. No fija el reparto definitivo entre Luis y Lino.'
         },
         {
-          id: 'horarios',
-          label: '¿Qué días y horarios queréis atender?',
-          type: 'text',
-          required: true,
-          placeholder: 'Por ejemplo: laborables de mañana; llamadas por la tarde.',
-          help: 'Distingue horario de trabajo y de respuesta si son distintos. Indica si no atendéis fines de semana o urgencias.'
+          id: 'encargos_preferidos', label: '¿Qué tipo de encargo te gustaría recibir primero?',
+          type: 'radio', required: true,
+          options: ['Montajes concretos que pueda terminar en unas horas', 'Varios arreglos pequeños en la misma vivienda', 'Pintura o puesta a punto de una vivienda', 'Pequeñas reformas de varios días', 'Trabajos habituales con un comercio o colaborador', 'No lo sé todavía; quiero comparar opciones'],
+          help: 'Elige tu preferencia para empezar. No te compromete a aceptar un servicio que no domines.'
         },
         {
-          id: 'gestion_consultas',
-          label: '¿Quién responderá las consultas y cuándo podrá hacerlo?',
-          type: 'text',
-          required: true,
-          placeholder: 'Nombre o rol y plazo habitual: durante el día, al terminar la jornada…',
-          help: 'Si no está decidido, escribe «Por organizar». No anunciaremos atención inmediata sin confirmarlo.'
+          id: 'prioridad_web', label: '¿Qué te gustaría que consiguiera la web?',
+          type: 'select', required: false,
+          options: ['Que más personas sepan que existimos y nos contacten', 'Que se entiendan bien los trabajos que hacemos', 'Dar confianza al enseñar quiénes somos y cómo trabajamos', 'Enseñar trabajos reales a quien nos pida referencias', 'Prefiero que el desarrollador nos oriente'],
+          help: 'Opcional. Partimos de que ahora no hay presupuesto para anuncios.'
         },
         {
-          id: 'objetivo_90_dias',
-          label: '¿Qué os gustaría conseguir durante los primeros tres meses?',
-          type: 'text',
-          required: true,
-          placeholder: 'Por ejemplo: dos trabajos pequeños por semana o un colaborador habitual.',
-          help: 'Es vuestro objetivo de partida, no una garantía de resultados. También vale «Necesitamos definirlo».'
-        },
-        {
-          id: 'precios_costes',
-          label: '¿Qué importes o costes debemos tener en cuenta?',
-          type: 'textarea',
-          required: false,
-          placeholder: 'Mínimo por visita, ejemplo de un trabajo habitual, materiales o desplazamiento.',
-          help: 'Opcional y para planificar. Indica qué incluye cada importe y si lleva IVA. No publicaremos tarifas sin revisarlas con vosotros.'
-        }
-      ]
-    },
-    {
-      id: 'presencia',
-      title: 'Cómo os encuentran ahora',
-      intro: 'Aprovecharemos lo que ya tenéis. Los enlaces públicos son suficientes; no necesitamos contraseñas ni acceso a vuestras cuentas en este cuestionario.',
-      fields: [
-        {
-          id: 'canales_actuales',
-          label: '¿Por dónde llegan hoy los trabajos o las consultas?',
-          type: 'checkboxes',
-          required: true,
-          options: [
-            'Familiares, conocidos y recomendaciones',
-            'Google o Google Maps',
-            'WhatsApp',
-            'Instagram o Facebook',
-            'Grupos locales o asociaciones',
-            'Inmobiliarias, tiendas u otros colaboradores',
-            'Plataformas de servicios o anuncios clasificados',
-            'Otra vía',
-            'Todavía no recibimos consultas',
-            'No lo sé'
-          ],
-          help: 'Marca las vías que ya funcionan, aunque todavía lleguen pocos encargos.'
-        },
-        {
-          id: 'enlaces_publicos',
-          label: 'Enlaces públicos de vuestro negocio',
-          type: 'textarea',
-          required: false,
-          placeholder: 'Instagram, Facebook, Google Maps, web actual u otros perfiles.',
-          help: 'Opcional. Puedes poner un enlace por línea. No incluyas enlaces privados, claves ni códigos de acceso.'
-        },
-        {
-          id: 'perfil_google',
-          label: '¿Tenéis una ficha de empresa en Google Maps?',
-          type: 'select',
-          required: true,
-          options: [
-            'Sí, aparece y podemos gestionarla',
-            'Aparece, pero no sabemos quién la gestiona',
-            'La hemos creado y está pendiente de verificación',
-            'No tenemos ficha',
-            'No lo sé'
-          ],
-          help: 'Esto nos ayudará a decidir el siguiente paso sin crear fichas duplicadas.'
-        },
-        {
-          id: 'dominio_estado',
-          label: '¿Tenéis una dirección web o dominio comprado?',
-          type: 'select',
-          required: true,
-          options: [
-            'Sí, tenemos un dominio propio',
-            'Tenemos una web, pero no sabemos si el dominio es nuestro',
-            'No tenemos dominio todavía',
-            'No lo sé'
-          ],
-          help: 'No hace falta comprar nada para completar este cuestionario.'
-        },
-        {
-          id: 'dominio_detalle',
-          label: '¿Cuál es el dominio o qué nombre os gustaría usar?',
-          type: 'text',
-          required: false,
-          placeholder: 'Dominio actual o idea de nombre, si la tenéis.',
-          help: 'Opcional. Si ya existe, indica quién se ocupa de él. Sin usuarios, contraseñas ni datos de pago.'
-        }
-      ]
-    },
-    {
-      id: 'web',
-      title: 'Cómo queréis presentar L&L',
-      intro: 'Estas decisiones nos permitirán preparar una propuesta de web clara, con vuestro logo y una forma sencilla de contactar desde el móvil.',
-      fields: [
-        {
-          id: 'estilo_web',
-          label: '¿Qué imagen os gustaría transmitir?',
-          type: 'select',
-          required: true,
-          options: [
-            'Cercana y sencilla, con nosotros y nuestros trabajos',
-            'Sobria y profesional, con servicios muy claros',
-            'Visual, dando protagonismo a las fotos de trabajos',
-            'Preferimos que el desarrollador nos proponga una dirección',
-            'No lo sé todavía'
-          ],
-          help: 'Usaremos vuestro logo como punto de partida. Todas las opciones pueden transmitir seriedad.'
-        },
-        {
-          id: 'referencias_web',
-          label: '¿Hay alguna web que os guste o algo que queráis evitar?',
-          type: 'textarea',
-          required: false,
-          placeholder: 'Enlace y qué te gusta: fotos, colores, textos, facilidad para contactar…',
-          help: 'Opcional. También puedes indicar expresiones, estilos o promesas que no representen vuestro negocio.'
-        },
-        {
-          id: 'diferencia_real',
-          label: '¿Por qué os recomendaría alguien que ya ha trabajado con vosotros?',
-          type: 'textarea',
-          required: true,
-          placeholder: 'Una o dos razones concretas y, si podéis, un ejemplo.',
-          help: 'Contad algo que podáis demostrar. Si aún está por definir, indicadlo; no necesitamos frases publicitarias.'
-        },
-        {
-          id: 'contacto_preferido',
-          label: '¿Qué queréis que haga alguien interesado al entrar en la web?',
-          type: 'radio',
-          required: true,
-          options: [
-            'Escribir por WhatsApp con fotos y su municipio',
-            'Llamarnos por teléfono',
-            'Rellenar un formulario breve de solicitud',
-            'Escribirnos por correo',
-            'Necesitamos elegirlo con el desarrollador'
-          ],
-          help: 'Elige la vía que os resulte más fácil atender. Después podremos ofrecer una alternativa.'
-        },
-        {
-          id: 'contacto_publico',
-          label: '¿Qué teléfono o correo autorizáis a mostrar a los futuros clientes?',
-          type: 'textarea',
-          required: true,
-          placeholder: 'Teléfono público, si tiene WhatsApp y/o correo del negocio. También vale «Pendiente de decidir».',
-          help: 'Escribe solo los datos que queréis hacer públicos. No daremos por hecho que el contacto de coordinación se puede publicar.'
+          id: 'algo_mas', label: '¿Hay algo más que deba saber para preparar vuestra propuesta?',
+          type: 'textarea', required: false,
+          placeholder: 'Una idea, algo que te preocupe, un enlace público que te guste o algo que quieras evitar.',
+          help: 'Opcional. Escribe con tus palabras. No incluyas contraseñas ni datos privados de clientes.'
         }
       ]
     }

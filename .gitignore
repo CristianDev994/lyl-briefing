@@ -6,3 +6,8 @@ node_modules/
 responses/
 respuestas-*.json
 respuestas-*.txt
+respuestas-*.zip
+curriculums/
+cv-*.pdf
+cv-*.doc
+cv-*.docx
