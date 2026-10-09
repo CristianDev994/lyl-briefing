@@ -11,6 +11,10 @@ GitHub Pages publica exclusivamente `docs/`, desde la rama `main`. La web no nec
 - `docs/app.js`: validación, borrador, revisión y entrega.
 - `docs/cv-store.js`: CV local por persona y paquete ZIP de respuestas + CV.
 - `docs/estudio.html`: estudio de mercado.
+- `docs/estudio.css` y `docs/estudio.js`: presentación y controles del estudio.
+- `docs/economics.js`: modelo reproducible de capacidad y caja de dos autónomos.
+- `docs/estudio-evidencia.json`: fuentes, límites y supuestos de precios y fiscalidad.
+- `docs/assets/study/`: fotografías WebP, SVG y créditos/licencias locales.
 
 ## Entrega por WhatsApp
 
@@ -47,3 +51,13 @@ Servir `docs/` con cualquier servidor estático local. Las pruebas en `tests/bri
 Para editar: modificar archivos, comprobar el flujo móvil, revisar `git diff --cached` y publicar en `main`. No añadir respuestas reales, copias de credenciales, `.env` ni archivos de otros proyectos. El correo de autor de Git debe ser la dirección `noreply` de GitHub para evitar publicar un correo personal en commits.
 
 Las pruebas usan exclusivamente identidades de ejemplo y adjuntos sintéticos. Comprueban los dos recorridos móviles, aislamiento y persistencia, adjuntos reales en el selector simulado, contenido del ZIP, importación, borrado y fallos de almacenamiento. No envían mensajes reales. El soporte nativo de compartir varía por navegador y aplicación: se verifica en tiempo de ejecución y se ofrece descarga como alternativa.
+
+## Estudio económico y recursos visuales
+
+El estudio distingue datos oficiales, tarifas anunciadas y propuestas propias. Compara 11 páginas comerciales, conserva las discrepancias de IVA/alcance/fecha y enlaza las fuentes. No presenta las tarifas publicadas como operaciones cobradas ni una muestra estadística del mercado.
+
+Cuatro escenarios modificables separan horas-persona, materiales, facturación sin IVA, gastos, dos cuotas RETA y reservas. Los ingresos se producen durante los meses equivalentes de actividad indicados; estructura y RETA se pagan durante 12 meses. La provisión para IRPF es una hipótesis de caja, no un impuesto calculado. Apartar reserva operativa no crea un gasto fiscal. El reparto 50/50 y los costes son supuestos que se deben revisar con Luis y Lino. No hay promesa de demanda ni de ingresos.
+
+Los cambios del simulador se guardan localmente con una clave distinta de los cuestionarios. Fotos Unsplash y diez iconos Lucide con sus licencias se sirven localmente. No se añade ningún CDN, analítica ni petición externa al cargar. Las fotos son de recurso, nunca trabajos atribuidos a L&L. Procedencia, transformación y hashes: `docs/assets/study/credits.json`.
+
+Validación: `node tests/economics.cjs` para cálculos independientes y límites; `node tests/estudio.cjs` para navegador, escenarios, navegación, imágenes, privacidad y móvil. `node tests/briefing.cjs` mantiene la comprobación del cuestionario individual. Las pruebas de navegador requieren Playwright y Chrome local; no son dependencias del sitio público.

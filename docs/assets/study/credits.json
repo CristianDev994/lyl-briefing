@@ -1,0 +1,175 @@
+{
+  "verifiedDate": "2026-10-09",
+  "notes": "Todos los recursos se alojan localmente. No se carga código, seguimiento ni imágenes desde terceros al consultar el estudio. Las fotografías son de recurso; no representan obras ni personas de L&L.",
+  "photos": [
+    {
+      "id": "sevilla",
+      "author": "Timur Seyfelmlyukov",
+      "authorUrl": "https://unsplash.com/@timurse",
+      "sourcePage": "https://unsplash.com/photos/seville-street-with-historic-buildings-parked-scooters-and-giralda-tower-UPBNmZQqI-o",
+      "sourceImage": "https://images.unsplash.com/photo-1782916539674-33c80b12ec66",
+      "alt": "Edificios del centro de Sevilla y la Giralda al fondo.",
+      "caption": "Sevilla: fotografía de recurso de Timur Seyfelmlyukov / Unsplash.",
+      "transform": "Redimensionada a 1200 o 640 px de ancho; formato WebP, calidad 60. Sin recorte.",
+      "license": "Unsplash License",
+      "licenseUrl": "https://unsplash.com/license",
+      "licenseVerifiedOnPhotoPage": true,
+      "licenseSummary": "Uso gratuito, incluido comercial. Se permite descargar y modificar; no vender la imagen sin una modificación significativa ni crear un servicio competidor con las fotos.",
+      "verifiedDate": "2026-10-09",
+      "usage": "Fotografía de recurso editorial: no acredita trabajos, instalaciones, empleados ni clientes de L&L.",
+      "files": [
+        {
+          "path": "sevilla.webp",
+          "width": 1200,
+          "height": 802,
+          "bytes": 237402,
+          "sha256": "d2073f29c121780322adca3a176a56be3cff11093c22e47678f5dd84ef00137f",
+          "downloadUrl": "https://images.unsplash.com/photo-1782916539674-33c80b12ec66?fit=max&fm=webp&q=60&w=1200"
+        },
+        {
+          "path": "sevilla-640.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 81528,
+          "sha256": "0627cf8d04a9b8e736f217ccfb5d678e7388753b50754308913219bb3e176fe3",
+          "downloadUrl": "https://images.unsplash.com/photo-1782916539674-33c80b12ec66?fit=max&fm=webp&q=60&w=640"
+        }
+      ]
+    },
+    {
+      "id": "herramientas",
+      "author": "Chris Briggs",
+      "authorUrl": "https://unsplash.com/@cgbriggs19",
+      "sourcePage": "https://unsplash.com/photos/black-and-red-cordless-hand-drill-ILBrHd6PFJA",
+      "sourceImage": "https://images.unsplash.com/photo-1593307315564-c96172dc89dc",
+      "alt": "Taladro, cinta métrica, sargento y tornillos sobre un banco de trabajo de madera.",
+      "caption": "Herramientas: fotografía de recurso de Chris Briggs / Unsplash.",
+      "transform": "Recorte horizontal con foco x=0.5, y=0.6; 1200×800 o 640×427 px; WebP, calidad 68.",
+      "license": "Unsplash License",
+      "licenseUrl": "https://unsplash.com/license",
+      "licenseVerifiedOnPhotoPage": true,
+      "licenseSummary": "Uso gratuito, incluido comercial. Se permite descargar y modificar; no vender la imagen sin una modificación significativa ni crear un servicio competidor con las fotos.",
+      "verifiedDate": "2026-10-09",
+      "usage": "Fotografía de recurso editorial: no acredita trabajos, instalaciones, empleados ni clientes de L&L.",
+      "files": [
+        {
+          "path": "herramientas.webp",
+          "width": 1200,
+          "height": 800,
+          "bytes": 235078,
+          "sha256": "7b4ed43965d1299c55f71b2e53774ed70534239d300d6a96c512b6628a9e53b0",
+          "downloadUrl": "https://images.unsplash.com/photo-1593307315564-c96172dc89dc?fit=crop&crop=focalpoint&fp-x=0.5&fp-y=0.6&fm=webp&q=68&w=1200&h=800"
+        },
+        {
+          "path": "herramientas-640.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 84810,
+          "sha256": "5215e56946083ac11776f0b45d6c9a988d9bd58443b37b794fe94315582116ca",
+          "downloadUrl": "https://images.unsplash.com/photo-1593307315564-c96172dc89dc?fit=crop&crop=focalpoint&fp-x=0.5&fp-y=0.6&fm=webp&q=68&w=640&h=427"
+        }
+      ]
+    },
+    {
+      "id": "pintura",
+      "author": "Theme Photos",
+      "authorUrl": "https://unsplash.com/@themephotos",
+      "sourcePage": "https://unsplash.com/photos/paint-roller-applying-blue-paint-Cl-OpYWFFm0",
+      "sourceImage": "https://images.unsplash.com/photo-1562259949-e8e7689d7828",
+      "alt": "Rodillo extendiendo pintura azul sobre una pared blanca.",
+      "caption": "Pintura: fotografía de recurso de Theme Photos / Unsplash.",
+      "transform": "Redimensionada a 1200 px (calidad 76) o 640 px (calidad 68) de ancho; WebP. Sin recorte.",
+      "license": "Unsplash License",
+      "licenseUrl": "https://unsplash.com/license",
+      "licenseVerifiedOnPhotoPage": true,
+      "licenseSummary": "Uso gratuito, incluido comercial. Se permite descargar y modificar; no vender la imagen sin una modificación significativa ni crear un servicio competidor con las fotos.",
+      "verifiedDate": "2026-10-09",
+      "usage": "Fotografía de recurso editorial: no acredita trabajos, instalaciones, empleados ni clientes de L&L.",
+      "files": [
+        {
+          "path": "pintura.webp",
+          "width": 1200,
+          "height": 838,
+          "bytes": 197444,
+          "sha256": "231d110390d3ce8b4f7438766b3987ef84c2be48a2a40af64ec14e2f3d007b95",
+          "downloadUrl": "https://images.unsplash.com/photo-1562259949-e8e7689d7828?fit=max&fm=webp&q=76&w=1200"
+        },
+        {
+          "path": "pintura-640.webp",
+          "width": 640,
+          "height": 447,
+          "bytes": 49588,
+          "sha256": "bd4eb4f0966bafe0e3ec5367c9eab2dd360b87862c65f9a142f029c194b436b6",
+          "downloadUrl": "https://images.unsplash.com/photo-1562259949-e8e7689d7828?fit=max&fm=webp&q=68&w=640"
+        }
+      ]
+    }
+  ],
+  "icons": {
+    "project": "Lucide",
+    "version": "0.468.0",
+    "commit": "f12b0de177fbc2a6795e99be065887e72b237123",
+    "repository": "https://github.com/lucide-icons/lucide",
+    "sourceRoot": "https://raw.githubusercontent.com/lucide-icons/lucide/f12b0de177fbc2a6795e99be065887e72b237123/icons/",
+    "license": "ISC; algunos iconos proceden de Feather bajo MIT",
+    "licenseUrl": "https://lucide.dev/license",
+    "localLicenses": [
+      "icons/LICENSE",
+      "icons/LICENSE-FEATHER"
+    ],
+    "featherLicenseSource": "https://raw.githubusercontent.com/feathericons/feather/v4.29.2/LICENSE",
+    "changes": "SVG originales sin modificaciones.",
+    "files": [
+      {
+        "path": "icons/arrow-right.svg",
+        "bytes": 261,
+        "sha256": "288397fdb73bb4f783cf9eabb726ff47357df1d4e3f1201dd748090579f108b9"
+      },
+      {
+        "path": "icons/chart-no-axes-combined.svg",
+        "bytes": 413,
+        "sha256": "c78cd9f846108d5edbaf3a16d9df1763a8dde97bd1d4b55f359b78daa01f3c4b"
+      },
+      {
+        "path": "icons/check.svg",
+        "bytes": 239,
+        "sha256": "7f33acc9a77a61659531044525fc008edebe215bf4dcf1c789c8674ad3277db0"
+      },
+      {
+        "path": "icons/clock.svg",
+        "bytes": 285,
+        "sha256": "ede96d40554848eaa512664b11e73def3960cd60c260efa59ca9ccc1bbe8ec9c"
+      },
+      {
+        "path": "icons/euro.svg",
+        "bytes": 350,
+        "sha256": "7b7a60343151b7aba816b456a18e1e2cc8ffd0770bd84ffb36fa5b15d9aa536a"
+      },
+      {
+        "path": "icons/hammer.svg",
+        "bytes": 459,
+        "sha256": "2d0c9b5627d1a59ef769d64ce411c9467d1fbdd6f92f5d2c0bbed9d7aa825225"
+      },
+      {
+        "path": "icons/map-pin.svg",
+        "bytes": 359,
+        "sha256": "16f1042a62f1bda20ebab8bfc1cb79c0be285c980dea6c2c733a17902631405b"
+      },
+      {
+        "path": "icons/paint-roller.svg",
+        "bytes": 386,
+        "sha256": "5ee870ae29a42f19e5876cddee9bec1caed915e7554716844963a271e7dac740"
+      },
+      {
+        "path": "icons/shield-check.svg",
+        "bytes": 415,
+        "sha256": "8d4fcdbde5bba4abb1a2f6fe53e37ceb6343a1d5449a9d88f6f97c1971d26c4e"
+      },
+      {
+        "path": "icons/users.svg",
+        "bytes": 381,
+        "sha256": "c94a3781b154ab2716e1696c25c50d37b4b5634f26cb80ae1cdea20cfafc49c1"
+      }
+    ]
+  }
+}

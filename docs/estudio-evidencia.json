@@ -1,0 +1,597 @@
+{
+  "updatedAt": "2026-10-09",
+  "prices": {
+    "titulo": "L&L: evidencia pública de precios para Sevilla",
+    "fecha_consulta": "2026-10-09",
+    "moneda": "EUR",
+    "metodo": "Lectura de páginas públicas de oferta comercial y de plataformas. Son precios anunciados u orientaciones editoriales, no facturas ni una muestra estadística de trabajos cobrados. No se han solicitado presupuestos ni contactado con proveedores.",
+    "criterio_iva": "Se conserva el IVA tal como lo indica cada fuente. No se infiere inclusión por ser una web dirigida a particulares. Ninguna guía comercial se utiliza como autoridad fiscal.",
+    "advertencias_generales": [
+      "Una hora con dos operarios consume dos horas-persona; las tarifas individuales de esta muestra no se pueden tratar como precio para la pareja.",
+      "Un precio por m² de pared no equivale a un precio por m² de suelo de vivienda.",
+      "Precio publicado y antigüedad del rastreo no prueban que la tarifa siga disponible al contratar.",
+      "No se ha verificado la identidad registral, situación fiscal, habilitación profesional ni capacidad real de los anunciantes.",
+      "La cantidad de reseñas o testimonios no se usa para demostrar demanda, facturación ni ingresos.",
+      "Las páginas de Taskia muestran cifras distintas entre resultado de búsqueda y lectura de página: sólo sirven como señal del extremo bajo del escaparate. No sirven de suelo rentable."
+    ],
+    "fuentes": [
+      {
+        "id": "salva",
+        "nombre": "Manitas Sevilla - Salva",
+        "url": "https://manitassevilla.es.tl/",
+        "tipo": "Web propia de anunciante local",
+        "ambito": "Sevilla y pueblos circundantes",
+        "actualizacion_declarada": "No indicada; copyright 2026 no demuestra actualización de tarifas",
+        "tarifas": [
+          {
+            "servicio": "Primera hora de manitas",
+            "min": 30,
+            "max": 30,
+            "unidad": "primera hora de visita",
+            "personas": "No cuantificadas; texto habla de un profesional",
+            "iva": "no indicado",
+            "minimo": "Una hora",
+            "desplazamiento": "Incluido en primera hora; no concreta radio",
+            "materiales": "Herramientas y pequeños elementos de fijación incluidos; repuestos excluidos"
+          },
+          {
+            "servicio": "Tiempo adicional",
+            "min": 25,
+            "max": 25,
+            "unidad": "hora adicional",
+            "personas": "No cuantificadas",
+            "iva": "no indicado",
+            "minimo": "Publica medias horas de 12€",
+            "desplazamiento": "Incluido en primera hora",
+            "materiales": "Repuestos excluidos"
+          }
+        ],
+        "lectura": "Publica una tarifa de salida y otra de continuación. Ofrece presupuestos cerrados y agrupar encargos. Sirve para comparar estructura comercial, con vigencia por confirmar.",
+        "fiabilidad": "Primaria para lo anunciado; baja para deducir precio vigente o media local."
+      },
+      {
+        "id": "manitassevilla",
+        "nombre": "ManitasSevilla.com · pequeñas reparaciones",
+        "url": "https://www.manitassevilla.com/manitas/",
+        "tipo": "Web comercial local; identidad del prestador no verificada",
+        "ambito": "Provincia de Sevilla",
+        "actualizacion_declarada": "No indicada",
+        "tarifas": [
+          {
+            "servicio": "Salida manitas",
+            "min": 45,
+            "max": 45,
+            "unidad": "primera hora",
+            "personas": "No cuantificadas; no es tarifa confirmada de dos operarios",
+            "iva": "incluido",
+            "minimo": "Una hora; continuación en fracciones de media hora sin precio explícito",
+            "desplazamiento": "Incluido dentro del municipio",
+            "materiales": "Fijaciones y consumibles corrientes incluidos; piezas concretas aparte"
+          },
+          {
+            "servicio": "Armario de dos puertas",
+            "min": 60,
+            "max": 110,
+            "unidad": "trabajo",
+            "iva": "incluido",
+            "duracion_anunciada": "1–2 horas"
+          }
+        ],
+        "lectura": "Referencia de paquetes pequeños con salida mínima, IVA y consumibles transparentes. No acredita operaciones realizadas. No sumar precios por tarea sin contrastar la tarifa de visita agrupada.",
+        "fiabilidad": "Primaria para contenido anunciado; requiere presupuesto y comprobación del prestador."
+      },
+      {
+        "id": "manitassevilla_pintura",
+        "nombre": "ManitasSevilla.com · pintura",
+        "url": "https://www.manitassevilla.com/pintor/",
+        "tipo": "Web comercial local; misma entidad anunciadora que manitassevilla",
+        "ambito": "Provincia de Sevilla",
+        "actualizacion_declarada": "No indicada",
+        "tarifas": [
+          {
+            "servicio": "Pintura de vivienda",
+            "min": 6,
+            "max": 12,
+            "unidad": "m² de superficie pintada",
+            "personas": "No indicadas",
+            "iva": "incluido",
+            "materiales": "Incluidos",
+            "desplazamiento": "No indicado",
+            "minimo": "No indicado"
+          },
+          {
+            "servicio": "Piso de 90 m² completo",
+            "min": 900,
+            "max": 1700,
+            "unidad": "vivienda",
+            "personas": "No indicadas",
+            "iva": "incluido",
+            "materiales": "Incluidos"
+          }
+        ],
+        "lectura": "No extrapolar multiplicando los metros de suelo por la tarifa de superficie. Revisar preparación, techos, alturas y muebles. No es una referencia independiente de la anterior.",
+        "fiabilidad": "Oferta orientativa, no coste ni productividad medidos."
+      },
+      {
+        "id": "bascon",
+        "nombre": "Reformas Bascón · guía de precios",
+        "url": "https://www.reformasbascon.es/precios",
+        "tipo": "Guía comercial alojada en web de reformas local",
+        "ambito": "Sevilla capital y área metropolitana",
+        "actualizacion_declarada": "Título 2025/2026; pie última actualización enero 2025",
+        "tarifas": [
+          {
+            "servicio": "Pintura económica",
+            "min": 8,
+            "max": 8,
+            "unidad": "m² de pared",
+            "personas": "No indicadas",
+            "iva": "excluido",
+            "materiales": "Incluye pintura básica, imprimación y dos manos; sin preparación previa",
+            "desplazamiento": "No indicado",
+            "minimo": "No indicado"
+          },
+          {
+            "servicio": "Pintura media",
+            "min": 12,
+            "max": 12,
+            "unidad": "m² de pared",
+            "iva": "excluido",
+            "materiales": "Incluye pintura y preparación básica"
+          }
+        ],
+        "lectura": "Expone alcances por calidades que explican diferencias de precio. El pie antiguo obliga a tratarlo como referencia publicada, no tarifa actual confirmada.",
+        "fiabilidad": "Orientativa. Su explicación del IVA simplifica indebidamente condiciones: no utilizar como fuente fiscal."
+      },
+      {
+        "id": "vega_home",
+        "nombre": "Vega Home · pintor Sevilla",
+        "url": "https://www.empresareformassevilla.com/pintor-sevilla/",
+        "tipo": "Web propia de empresa que ofrece servicios locales",
+        "ambito": "Sevilla, provincia y parte de Cádiz",
+        "actualizacion_declarada": "Página titulada precios orientativos 2026",
+        "tarifas": [
+          {
+            "servicio": "Piso de dos habitaciones, 70 m² de techo",
+            "min": 900,
+            "max": 1500,
+            "unidad": "vivienda",
+            "personas": "No indicadas para tarifa; FAQ describe equipo de dos para 80 m²",
+            "iva": "no indicado",
+            "materiales": "Paredes y techo, dos manos, preparación, protección y limpieza; materiales mencionados en presupuesto cerrado",
+            "desplazamiento": "Sin recargo en zona principal; confirmar alcance",
+            "minimo": "No indicado"
+          },
+          {
+            "servicio": "Piso de tres habitaciones, 90 m² de techo",
+            "min": 1200,
+            "max": 1900,
+            "unidad": "vivienda",
+            "iva": "no indicado",
+            "materiales": "Añade esmaltado de puertas y rodapiés"
+          }
+        ],
+        "lectura": "La duración publicada es una estimación comercial del proveedor, no rendimiento garantizado para Luis y Lino. Los rangos de gotelé tienen alcance contradictorio entre tabla y FAQ: se excluyen del análisis.",
+        "fiabilidad": "Primaria para oferta comercial; sin confirmación fiscal ni de productividad real."
+      },
+      {
+        "id": "taskrabbit",
+        "nombre": "Taskrabbit · montaje de muebles Sevilla",
+        "url": "https://www.taskrabbit.es/locations/sevilla/montaje-muebles",
+        "tipo": "Plataforma comercial de profesionales; no encuesta independiente",
+        "ambito": "Sevilla",
+        "actualizacion_declarada": "No indicada",
+        "tarifas": [
+          {
+            "servicio": "Montaje de muebles",
+            "aproximado": 27,
+            "unidad": "hora",
+            "personas": "Tasker individual; no precio de pareja",
+            "iva": "no aclarado junto a esta cifra",
+            "minimo": "No indicado en esta página",
+            "desplazamiento": "No indicado en esta página",
+            "materiales": "No indicado; limpieza y cajas a pactar",
+            "comisiones": "No desglosadas en la cifra de la página"
+          }
+        ],
+        "lectura": "Indicador del escaparate de la plataforma. Revisar el total al reservar; no tratar 27€ como dinero neto que conserva el profesional.",
+        "fiabilidad": "Media como orientación comercial; no aporta muestra ni fecha del cálculo."
+      },
+      {
+        "id": "cronoshare_local",
+        "nombre": "Cronoshare · montadores de muebles Sevilla",
+        "url": "https://www.cronoshare.com/servicios/montadores-muebles/sevilla/sevilla",
+        "tipo": "Comparador comercial",
+        "ambito": "Sevilla capital",
+        "actualizacion_declarada": "No indicada",
+        "tarifas": [
+          {
+            "servicio": "Montaje de muebles",
+            "min": 21,
+            "max": 28,
+            "medio_publicado": 25,
+            "unidad": "hora",
+            "personas": "Montador, sin tarifa de equipo explícita",
+            "iva": "no indicado",
+            "minimo": "No indicado",
+            "desplazamiento": "No indicado",
+            "materiales": "No indicado"
+          }
+        ],
+        "lectura": "La propia guía de Cronoshare publica otra banda sevillana: 25–40€/h. No presentar una de las dos como censo definitivo; conservar la discrepancia.",
+        "fiabilidad": "Media-baja para estimar media local: sin tamaño de muestra, fecha o alcance comparable."
+      },
+      {
+        "id": "cronoshare_guia",
+        "nombre": "Cronoshare · guía de montaje de muebles 2026",
+        "url": "https://www.cronoshare.com/cuanto-cuesta/montaje-muebles",
+        "tipo": "Guía editorial de comparador comercial",
+        "ambito": "España con desglose para Sevilla",
+        "actualizacion_declarada": "2026-01-06",
+        "tarifas": [
+          {
+            "servicio": "Montador en Sevilla",
+            "min": 25,
+            "max": 40,
+            "unidad": "hora",
+            "personas": "Montador; segunda persona aparece como extra",
+            "iva": "El calculador dice IVA incluido; la tabla no lo aclara expresamente",
+            "minimo": "Guía describe mínimo habitual de una hora",
+            "desplazamiento": "Urbano0–25€; interurbano0,30–0,60€/km; aparcamiento aparte",
+            "materiales": "Menciona coste más10–15% gestión"
+          },
+          {
+            "servicio": "Armario de dos puertas batientes",
+            "min": 60,
+            "max": 130,
+            "unidad": "trabajo orientativo nacional",
+            "duracion_anunciada": "2–3 horas",
+            "iva": "no explícito en tabla"
+          }
+        ],
+        "lectura": "Ayuda a separar precio, salida, aparcamiento y ayuda adicional. Los paquetes nacionales no prueban precios cerrados reales en Sevilla.",
+        "fiabilidad": "Orientación comercial con fecha; no una oferta vinculante."
+      },
+      {
+        "id": "taskia",
+        "nombre": "Taskia · montaje de muebles Sevilla",
+        "url": "https://www.taskia.es/servicios-de-montaje-muebles-en-sevilla",
+        "tipo": "Marketplace comercial",
+        "ambito": "Sevilla",
+        "actualizacion_declarada": "No indicada",
+        "tarifas": [
+          {
+            "servicio": "Montaje de muebles",
+            "min": 8,
+            "max": 9.9,
+            "medio_publicado": 8.9,
+            "unidad": "hora",
+            "personas": "No explicitadas; perfiles independientes",
+            "iva": "no indicado",
+            "minimo": "No indicado",
+            "desplazamiento": "No indicado",
+            "materiales": "No indicado"
+          }
+        ],
+        "lectura": "Búsqueda mostró8–10,20€ y media9€; lectura de página mostró8–9,90€ y media8,90€. Sin método, vigencia o inclusiones claras. No promediar con otras fuentes ni recomendar cobrar esto.",
+        "fiabilidad": "Baja; útil únicamente para mostrar presión de escaparate barato y falta de comparabilidad."
+      },
+      {
+        "id": "ikea",
+        "nombre": "IKEA España · coste del servicio de montaje",
+        "url": "https://www.ikea.com/es/es/customer-service/knowledge/articles/cb75bf2a-05b8-4ca8-9dd6-09e248c73658.html",
+        "tipo": "Minorista; oferta primaria a través de Taskrabbit",
+        "ambito": "España; disponibilidad local se verifica por código postal",
+        "actualizacion_declarada": "No indicada",
+        "tarifas": [
+          {
+            "servicio": "Montaje IKEA con Taskrabbit",
+            "desde": 23,
+            "unidad": "servicio mínimo, no hora",
+            "personas": "No explicitadas",
+            "iva": "No aclarado en artículo",
+            "minimo": "Desde23€; precio según artículos durante contratación",
+            "desplazamiento": "No desglosado en artículo",
+            "materiales": "Mueble comprado aparte; anclaje requerido por el mueble incluido"
+          }
+        ],
+        "lectura": "No afirmar que cualquier armario se monta por23€. Excluye electricidad y fontanería; cocinas tienen servicio separado salvo excepciones definidas. Señala competencia por servicio específico, no tarifa general de manitas.",
+        "fiabilidad": "Alta para la regla comercial publicada; oferta local final pendiente del producto y código postal."
+      },
+      {
+        "id": "expertos_parquet",
+        "nombre": "Expertos en Parquet · ofertas Huelva y Sevilla",
+        "url": "https://expertosenparquet.com/w/ofertas-2",
+        "tipo": "Web propia de especialista regional",
+        "ambito": "Huelva y Sevilla",
+        "actualizacion_declarada": "Ofertas válidas hasta2026-12-31",
+        "tarifas": [
+          {
+            "servicio": "Asesoramiento de instalación de suelo en casa",
+            "min": 90,
+            "max": 90,
+            "unidad": "sesión de dos horas",
+            "personas": "Un experto",
+            "iva": "incluido",
+            "minimo": "Dos horas; presentar código EXPTUT2026",
+            "desplazamiento": "No desglosado",
+            "materiales": "Tutorial, no instalación completa ni suministro de pavimento"
+          },
+          {
+            "servicio": "Hora adicional tutorial",
+            "min": 30,
+            "max": 30,
+            "unidad": "hora adicional",
+            "iva": "incluido"
+          }
+        ],
+        "lectura": "Prueba un formato de salida+especialidad con vigencia expresa. No usar el tutorial como precio de instalación de suelo.",
+        "fiabilidad": "Primaria y fechada para una promoción concreta; servicio distinto del manitas general."
+      }
+    ],
+    "sintesis": {
+      "conclusion": "No existe un único precio sevillano comparable. El escaparate mezcla por hora, primera visita, pieza y paquete, con IVA y alcances distintos. L&L debería calcular su suelo de coste y validar paquetes acotados con clientes reales.",
+      "referencia_util": "El montaje anunciado ronda25–40€/h en la guía comercial de Sevilla; una web local anuncia45€ IVA incluido por primera hora. Son referencias para experimentar, no garantía de cobro ni media estadística.",
+      "errores_evitar": [
+        "Ir ambos a una tarea de un operario y cobrar una sola tarifa individual.",
+        "Regalar el viaje a toda la provincia por un arreglo de30€.",
+        "Presupuestar pintura por superficie de suelo sin medir paredes y techos.",
+        "Llamar ganancia a una factura que incluye IVA, materiales, gasolina y trabajo propio.",
+        "Copiar una banda baja de plataforma sin comprobar salida, mínimos, impuestos y consumibles.",
+        "Vender urgencias24h o reforma integral sin capacidad, seguros, oficios y agenda para cumplir."
+      ]
+    },
+    "hipotesis_de_tarifa_para_validar": {
+      "naturaleza": "Propuesta analítica propia a contrastar en10–20 presupuestos y con costes reales. No tarifas observadas ni ya decididas por Luis y Lino. Todos los importes base están sin IVA; al cliente particular se le presenta total final con el impuesto que corresponda.",
+      "objetivo_interno": {
+        "min": 32,
+        "max": 40,
+        "unidad": "EUR de mano de obra sin IVA por hora-persona facturada",
+        "justificacion": "Situarse en el tramo de servicio profesional preparado, agrupar visitas y evitar competir por horas baratas. Confrontar con costes reales y conversión."
+      },
+      "paquetes": [
+        {
+          "nombre": "Visita pequeña agrupada",
+          "personas": 1,
+          "horas_en_casa": 1,
+          "precio_base_min": 45,
+          "precio_base_max": 55,
+          "ejemplo_total_con_21_min": 54.45,
+          "ejemplo_total_con_21_max": 66.55,
+          "incluye": "Salida en microzona pactada y hasta1h de mano de obra; lista acordada antes",
+          "excluye": "Piezas, material importante, viaje fuera de zona, aparcamiento especial y obras"
+        },
+        {
+          "nombre": "Lista de arreglos de dos horas",
+          "personas": 1,
+          "horas_en_casa": 2,
+          "precio_base_min": 80,
+          "precio_base_max": 95,
+          "ejemplo_total_con_21_min": 96.8,
+          "ejemplo_total_con_21_max": 114.95,
+          "incluye": "Una visita, tareas sencillas preacordadas y fotos de cierre",
+          "excluye": "Piezas y problemas ocultos; no garantizar número de tareas sin verlas"
+        },
+        {
+          "nombre": "Montaje o puesta a punto en pareja",
+          "personas": 2,
+          "horas_en_casa": 4,
+          "horas_persona": 8,
+          "precio_base_min": 260,
+          "precio_base_max": 320,
+          "ejemplo_total_con_21_min": 314.6,
+          "ejemplo_total_con_21_max": 387.2,
+          "incluye": "Bloque reservado y alcance escrito de montaje o varias tareas",
+          "excluye": "Muebles, piezas, transporte de mercancía, retirada especial y servicios regulados"
+        },
+        {
+          "nombre": "Jornada de seis horas productivas en pareja",
+          "personas": 2,
+          "horas_en_casa": 6,
+          "horas_persona": 12,
+          "precio_base_min": 390,
+          "precio_base_max": 480,
+          "ejemplo_total_con_21_min": 471.9,
+          "ejemplo_total_con_21_max": 580.8,
+          "incluye": "Mano de obra para puesta a punto planificada",
+          "excluye": "Materiales, compras y viajes no incluidos en alcance; no equiparar a8h completas en casa"
+        }
+      ],
+      "pintura": "Ofertar tras medir y comprobar soporte. Para una estancia, contar protección, preparación, secados, manos, limpieza, desplazamientos y compras. Contrastar250–450€ publicados por Vega Home e importes8–18€/m²pared de Bascón, preservando que el IVA y la superficie difieren. No fijar un precio universal por piso.",
+      "desplazamientos": "Definir una microzona de salida incluida. Fuera de ella cotizar tiempo de ambos, kilómetros ida y vuelta y aparcamiento; agrupar rutas. No adoptar0,30–0,60€/km como coste real sin calcular vehículo y tiempo.",
+      "regla_presupuesto": "Presupuesto mínimo=horas-persona previstas×tarifa interna+materiales+compras/logística+desplazamiento no cubierto+reserva explícita por incertidumbre; aplicar IVA correcto al total. El resultado debe competir por resolución y claridad, no sólo por hora."
+    },
+    "servicios_priorizados": [
+      {
+        "servicio": "Montaje de muebles y conjuntos de estancias",
+        "encaje": "Alto si tienen destreza y herramientas",
+        "reparto": "Uno para piezas pequeñas; ambos sólo si volumen, seguridad o ejecución lo justifican",
+        "motivo_economico": "Alcance visible por referencia de producto, pocas compras y posibilidad de repetir modelos",
+        "condiciones": "Manual, cajas completas, espacio de trabajo, acceso y anclajes verificados; no incluir suministro o traslado sin presupuesto"
+      },
+      {
+        "servicio": "Lista de arreglos en una sola visita",
+        "encaje": "Alto para empezar con tareas que ya dominan",
+        "reparto": "Rutas individuales si ambos pueden resolverlas y cuentan con transporte/herramientas; no presuponerlo",
+        "motivo_economico": "Reduce salida por tarea y aumenta ingreso por visita",
+        "condiciones": "Fotos previas, tiempo máximo, piezas separadas y aceptación de extras antes de ejecutarlos"
+      },
+      {
+        "servicio": "Puesta a punto antes de alquilar o entregar vivienda",
+        "encaje": "Alto como paquete con propietario, inmobiliaria o administrador",
+        "reparto": "Ambos en tareas paralelas planificadas; responsable único de checklist y entrega",
+        "motivo_economico": "Pedido mayor, menos desplazamientos y posibilidad de repetición",
+        "condiciones": "Delimitar pintura, ajustes y montaje; no prometer solución de todas las averías ni incluir limpieza profesional sin comprobar capacidad"
+      },
+      {
+        "servicio": "Pintura interior selectiva y preparación",
+        "encaje": "Medio-alto sólo con calidad y productividad demostrables",
+        "reparto": "Uno prepara/protege mientras otro aplica donde sea compatible con secados",
+        "motivo_economico": "Puede llenar bloques de agenda; el margen se pierde con preparación omitida y retornos",
+        "condiciones": "Medición real y estado del soporte; humedad de origen, altura o acabados especializados se valoran aparte"
+      },
+      {
+        "servicio": "Mantenimiento programado de pequeños negocios e inmuebles",
+        "encaje": "Tras primeras referencias",
+        "reparto": "Una persona por visita simple; bloque de pareja para trabajos acumulados",
+        "motivo_economico": "Repetición y planificación reducen captación y viajes",
+        "condiciones": "Bolsa de horas con alcance, consumo, caducidad, respuesta realista y materiales definidos; nunca ilimitado"
+      }
+    ],
+    "capacidades_por_confirmar": [
+      "Experiencia y productividad de Luis y de Lino por separado; quién puede trabajar solo.",
+      "Herramientas, detector, escaleras apropiadas, equipos de protección y posibilidad real de dos rutas.",
+      "Vehículo, carga, acceso y gestión de retirada; no ofrecer transporte o residuos sin capacidad y requisitos correspondientes.",
+      "Seguro y habilitaciones para electricidad, gas, climatización y otros trabajos regulados antes de anunciarlos. Las ofertas de competidores no habilitan a L&L.",
+      "No asumir competencia en estructura, amianto, altura, diagnóstico de humedades o instalaciones por tener habilidades de montaje.",
+      "Ofrecer sólo servicios que puedan entregar; derivar a colaboradores identificados lo demás, con alcance y responsabilidad claros."
+    ]
+  },
+  "fiscalSources": [
+    {
+      "id": "AEAT-IVA",
+      "url": "https://sede.agenciatributaria.gob.es/Sede/iva/iva-operaciones-inmobiliarias/que-tipo-se-aplica-obras-viviendas/obras-renovacion-reparacion.html",
+      "title": "AEAT: IVA de obras de renovación o reparación",
+      "facts": [
+        "Regla general 21%.",
+        "10% sólo si se cumplen las condiciones: destinatario persona física que usa vivienda para uso particular, construcción/rehabilitación terminada al menos dos años antes y materiales aportados no superiores al 40% de la base imponible.",
+        "La AEAT excluye del reducido las viviendas destinadas al alquiler o al ejercicio de actividad empresarial/profesional. No anunciar 10% universal."
+      ],
+      "webVerified": true
+    },
+    {
+      "id": "AEAT-130",
+      "url": "https://sede.agenciatributaria.gob.es/Sede/impuestos-tasas/impuesto-sobre-renta-personas-fisicas/modelo-130-irpf______esionales-estimacion-directa-fraccionado_/instrucciones.html",
+      "title": "AEAT: instrucciones del modelo 130",
+      "facts": [
+        "Para la actividad en estimación directa, regla general del pago fraccionado: 20% sobre rendimiento neto positivo acumulado, descontando pagos previos y retenciones según las casillas aplicables.",
+        "Es un pago a cuenta del IRPF, no un tipo final fijo ni una prueba del dinero neto disponible. El impuesto anual depende del conjunto de rentas y circunstancias de cada persona."
+      ],
+      "webVerified": true
+    },
+    {
+      "id": "SS-BASES-2026",
+      "url": "https://www.seg-social.es/wps/portal/wss/internet/Trabajadores/CotizacionRecaudacionTrabajadores/10721/10724/1320/1322/base%20de%20cotizacion?changeLanguage=es",
+      "title": "Seguridad Social: bases de cotización RETA 2026",
+      "facts": [
+        "Se elige base dentro del intervalo del tramo de rendimientos netos. La cuota real puede superar la mínima del modelo.",
+        "La tabla 2026 figura publicada. Los supuestos de familiares colaboradores o societarios tienen particularidades, no modeladas aquí."
+      ],
+      "webVerified": true
+    },
+    {
+      "id": "BOE-RETA-2026",
+      "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2026-7296",
+      "title": "Orden PJC/297/2026: cotización 2026",
+      "facts": [
+        "Art.18 recoge bases RETA y tipos: comunes28,30%; profesionales1,30%; MEI0,90%. Art.38: cese0,90% y formación0,10%. Total ordinario31,50% de la base.",
+        "No usar el31,40% de2025 en el modelo ordinario2026."
+      ],
+      "webVerified": true
+    },
+    {
+      "id": "IMPORTASS",
+      "url": "https://portal.seg-social.gob.es/wps/portal/importass/importass/Colectivos/Trabajo%2BAutonomo/guia",
+      "title": "Importass: guía de trabajo autónomo",
+      "facts": [
+        "Se determina el tramo con rendimientos anuales; estimación directa suma cuotas RETA al rendimiento fiscal y aplica deducción genérica7% para autónomo individual ordinario, con especialidades.",
+        "Cuotas provisionales sujetas a regularización. Posibles bonificaciones y cuota reducida requieren elegibilidad.",
+        "La guía consultada publica cuota reducida80€ más MEI y total88,64€. No la usamos para simular rentabilidad permanente ni asumimos que Luis/Lino tengan derecho."
+      ],
+      "editorialNote": "El total88,64€ de la guía no coincide exactamente con80+0,9%de950,98(base mínima tramo1 que la propia página nombra). Para el estudio basta enlazar y decir que existen reducciones sujetas a requisitos; confirmar importe en alta conTGSS, no construir escenarios sobre este total.",
+      "webVerified": true
+    },
+    {
+      "id": "JUNTA-BT",
+      "url": "https://www.juntadeandalucia.es/organismos/universidadindustriaenergiaeinnovacion/areas/industria/instaladores/habilitacion-empresas/paginas/instaladores-baja-tension.html",
+      "title": "Junta: empresa instaladora de baja tensión",
+      "facts": [
+        "Las empresas que realizan, mantienen o reparan instalaciones eléctricas en ámbito REBT deben cumplir requisitos y presentar declaración responsable para habilitarse. Personal cualificado y medios exigidos."
+      ],
+      "webVerified": true
+    },
+    {
+      "id": "JUNTA-GAS",
+      "url": "https://www.juntadeandalucia.es/organismos/universidadindustriaenergiaeinnovacion/areas/industria/instaladores/habilitacion-empresas/paginas/instaladora-gas.html",
+      "title": "Junta: empresa instaladora de gas",
+      "facts": [
+        "Montaje, reparación y mantenimiento de instalaciones de gas corresponden a empresa instaladora habilitada con requisitos técnicos y humanos. No ofrecer estos trabajos sin acreditar habilitación."
+      ],
+      "webVerified": true
+    }
+  ],
+  "model": {
+    "description": "Hipótesis de gestión; no previsión de ventas ni cálculo de IRPF",
+    "scenarios": [
+      {
+        "id": "arranque",
+        "name": "Arranque",
+        "description": "Agenda aún irregular; sirve para ver el riesgo de pocos encargos.",
+        "days": 20,
+        "hours": 8,
+        "utilization": 40,
+        "rate": 32,
+        "materials": 450,
+        "markup": 15,
+        "fixed": 850,
+        "reta": 310,
+        "contingency": 3,
+        "months": 11,
+        "taxReserve": 20,
+        "incomeGoal": 2000
+      },
+      {
+        "id": "base",
+        "name": "Agenda estable",
+        "description": "Hipótesis de trabajo: 60 % del tiempo del equipo se factura.",
+        "days": 20,
+        "hours": 8,
+        "utilization": 60,
+        "rate": 38,
+        "materials": 800,
+        "markup": 15,
+        "fixed": 850,
+        "reta": 460,
+        "contingency": 3,
+        "months": 11,
+        "taxReserve": 20,
+        "incomeGoal": 2000
+      },
+      {
+        "id": "solido",
+        "name": "Bien organizados",
+        "description": "Más encargos repetidos, bloques de trabajo y precio medio alto.",
+        "days": 20,
+        "hours": 8,
+        "utilization": 70,
+        "rate": 42,
+        "materials": 1100,
+        "markup": 15,
+        "fixed": 950,
+        "reta": 520,
+        "contingency": 3,
+        "months": 11,
+        "taxReserve": 20,
+        "incomeGoal": 2000
+      },
+      {
+        "id": "exigente",
+        "name": "Techo exigente del modelo",
+        "description": "80 % facturable a 45 €/hora-persona; requiere demanda, experiencia y poca dispersión.",
+        "days": 20,
+        "hours": 8,
+        "utilization": 80,
+        "rate": 45,
+        "materials": 1500,
+        "markup": 15,
+        "fixed": 1100,
+        "reta": 550,
+        "contingency": 3,
+        "months": 11,
+        "taxReserve": 20,
+        "incomeGoal": 2000
+      }
+    ]
+  },
+  "visualCredits": "assets/study/credits.json"
+}

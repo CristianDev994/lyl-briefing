@@ -1,0 +1,47 @@
+CRÉDITOS DE LOS RECURSOS VISUALES DEL ESTUDIO L&L
+Licencias comprobadas el 9 de octubre de 2026.
+
+Las fotografías son imágenes de recurso: no representan a Luis o Lino,
+ni acreditan trabajos, clientes o instalaciones de L&L.
+Todos los archivos se alojan en esta web; no hay carga de imágenes ni
+bibliotecas desde servidores de terceros durante la visita.
+
+FOTOGRAFÍAS — UNSPLASH LICENSE
+Uso gratuito, también comercial, según https://unsplash.com/license
+Se permite descargar, transformar y utilizar las fotos. No se permite
+venderlas sin una modificación significativa ni crear un servicio de
+imágenes competidor a partir de ellas. La atribución es voluntaria,
+y aquí se incluye para reconocer el trabajo de sus autores.
+Cada ficha de origen identifica la imagen como gratuita bajo esa licencia.
+
+1. Sevilla y la Giralda — Timur Seyfelmlyukov
+   Autor: https://unsplash.com/@timurse
+   Foto: https://unsplash.com/photos/seville-street-with-historic-buildings-parked-scooters-and-giralda-tower-UPBNmZQqI-o
+   Archivos: sevilla.webp, sevilla-640.webp
+   Cambios: reducción a 1200/640 px de ancho y WebP (calidad 60), sin recorte.
+
+2. Banco de herramientas — Chris Briggs
+   Autor: https://unsplash.com/@cgbriggs19
+   Foto: https://unsplash.com/photos/black-and-red-cordless-hand-drill-ILBrHd6PFJA
+   Archivos: herramientas.webp, herramientas-640.webp
+   Cambios: recorte horizontal (foco x=0.5, y=0.6), 1200×800/640×427 px,
+   WebP (calidad 68).
+
+3. Rodillo de pintura — Theme Photos
+   Autor: https://unsplash.com/@themephotos
+   Foto: https://unsplash.com/photos/paint-roller-applying-blue-paint-Cl-OpYWFFm0
+   Archivos: pintura.webp, pintura-640.webp
+   Cambios: reducción a 1200/640 px de ancho y WebP (calidad 76/68), sin recorte.
+
+ICONOS — LUCIDE 0.468.0
+Proyecto: https://github.com/lucide-icons/lucide
+Commit: f12b0de177fbc2a6795e99be065887e72b237123
+Licencia: https://lucide.dev/license
+Diez SVG originales, sin modificaciones:
+hammer, paint-roller, map-pin, clock, chart-no-axes-combined, euro,
+users, check, arrow-right y shield-check.
+Licencia ISC en icons/LICENSE. Se conserva además la licencia MIT
+de Feather en icons/LICENSE-FEATHER para los iconos derivados.
+
+El inventario técnico, las URL exactas de descarga, las dimensiones,
+el tamaño y el hash SHA-256 de cada archivo están en credits.json.
