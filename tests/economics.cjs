@@ -167,4 +167,3 @@ test('Missing or null input is rejected without throwing', () => {
     assert.ok(result.errors.length > 0);
   }
 });
-
