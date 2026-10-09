@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <title>L&L · Mercado, precios y rentabilidad en Sevilla</title>
-<link rel="stylesheet" href="estudio.css">
+<link rel="stylesheet" href="estudio.css?v=20261009-movil">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <meta name="referrer" content="no-referrer">
 </head>
 <body>
 <header><div class="masthead"><img class="logo" src="assets/logo.png" alt="Logo de L&L Multiservicios"><div><div class="brandline">L&L Multiservicios · Sevilla</div><h1>Un negocio rentable para Luis y Lino</h1><div class="small">Mercado · precios · beneficio · captación · 9 de octubre de 2026</div></div><div class="header-actions"><div class="pill">2 personas · 0 € en publicidad</div><br><button class="btn" id="print">Imprimir el plan</button></div></div></header>
-<div style="padding:12px 24px;background:#17272f;color:white;text-align:center">Vuelve a la pestaña del cuestionario para seguir respondiendo. <a href="./" style="color:white">Abrir el cuestionario si no lo tienes abierto</a></div><nav aria-label="Secciones del plan"><div class="nav-inner" role="tablist"><button id="tab-decision" role="tab" aria-selected="true" aria-controls="decision" data-tab="decision"><img class="icon" src="assets/study/icons/chart-no-axes-combined.svg" width="22" height="22" alt="" aria-hidden="true">Resumen</button>
+<div style="padding:12px 24px;background:#17272f;color:white;text-align:center">Vuelve a la pestaña del cuestionario para seguir respondiendo. <a href="./" style="color:white">Abrir el cuestionario si no lo tienes abierto</a></div><nav aria-label="Secciones del plan"><div class="mobile-nav"><label for="mobile-section">Sección</label><select id="mobile-section"><option value="decision">Resumen</option><option value="mercado">Mercado</option><option value="precios">Qué cobrar</option><option value="beneficios">Cuánto queda</option><option value="captacion">Captación</option><option value="plan">Plan de 90 días</option><option value="numeros">Cotizar por m²</option><option value="web">La futura web</option><option value="fuentes">Fuentes</option></select></div><div class="nav-inner" role="tablist"><button id="tab-decision" role="tab" aria-selected="true" aria-controls="decision" data-tab="decision"><img class="icon" src="assets/study/icons/chart-no-axes-combined.svg" width="22" height="22" alt="" aria-hidden="true">Resumen</button>
 <button id="tab-mercado" role="tab" aria-selected="false" aria-controls="mercado" data-tab="mercado" tabindex="-1"><img class="icon" src="assets/study/icons/map-pin.svg" width="22" height="22" alt="" aria-hidden="true">Mercado</button>
 <button id="tab-precios" role="tab" aria-selected="false" aria-controls="precios" data-tab="precios" tabindex="-1"><img class="icon" src="assets/study/icons/euro.svg" width="22" height="22" alt="" aria-hidden="true">Qué cobrar</button>
 <button id="tab-beneficios" role="tab" aria-selected="false" aria-controls="beneficios" data-tab="beneficios" tabindex="-1"><img class="icon" src="assets/study/icons/users.svg" width="22" height="22" alt="" aria-hidden="true">Cuánto queda</button>
@@ -155,8 +155,8 @@
 <div class="field"><label for="surface-otherCosts">Otros costes directos del encargo (€)</label><input id="surface-otherCosts" name="otherCosts" type="number" min="0" max="100000" step="0.01" value="50" required aria-describedby="surface-help-otherCosts"><p class="tiny" id="surface-help-otherCosts">Combustible, aparcamiento, retirada u otros costes atribuibles; sin repetir materiales.</p></div>
 <div class="field"><label for="surface-luisHours">Horas totales de Luis</label><input id="surface-luisHours" name="luisHours" type="number" min="0" max="10000" step="0.25" value="16" required aria-describedby="surface-help-luisHours"><p class="tiny" id="surface-help-luisHours">Obra, preparación, viajes, compras, gestión y repasos. Pon 0 si no participa.</p></div>
 <div class="field"><label for="surface-linoHours">Horas totales de Lino</label><input id="surface-linoHours" name="linoHours" type="number" min="0" max="10000" step="0.25" value="16" required aria-describedby="surface-help-linoHours"><p class="tiny" id="surface-help-linoHours">Sumad cada tiempo una vez. Podéis dedicar horas distintas al mismo encargo.</p></div>
-<div class="field"><label for="surface-target">Objetivo por hora-persona total (€)</label><input id="surface-target" name="target" type="number" min="1" max="200" step="0.01" value="25" required aria-describedby="surface-help-target"><p class="tiny" id="surface-help-target">Aportación para remuneración, gastos fijos, cuotas y reservas. Los 25 € iniciales solo ilustran.</p></div></div><button type="button" class="btn" id="surface-reset">Restablecer ejemplo por m²</button><p class="tiny" id="surface-storage" role="status"></p></form><p id="surface-error" class="model-warning" role="alert" hidden></p></div>
-<div><div class="model-output" id="surface-output" aria-live="polite" aria-atomic="true"><h3>Del precio por metro al resultado</h3><dl class="money-line"><dt>Superficie × precio por m²</dt><dd data-surface="surfaceRevenue">—</dd>
+<div class="field"><label for="surface-target">Objetivo por hora-persona total (€)</label><input id="surface-target" name="target" type="number" min="1" max="200" step="0.01" value="25" required aria-describedby="surface-help-target"><p class="tiny" id="surface-help-target">Aportación para remuneración, gastos fijos, cuotas y reservas. Los 25 € iniciales solo ilustran.</p></div></div><div class="surface-actions"><button type="submit" class="btn primary" id="surface-see-results">Ver resultado</button><button type="button" class="btn" id="surface-reset">Restablecer ejemplo por m²</button></div><p class="tiny" id="surface-storage" role="status"></p></form><p id="surface-error" class="model-warning" role="alert" hidden></p></div>
+<div><div class="model-output" id="surface-output" tabindex="-1" aria-label="Resultado del presupuesto por metros cuadrados" aria-live="polite" aria-atomic="true"><h3>Del precio por metro al resultado</h3><dl class="money-line"><dt>Superficie × precio por m²</dt><dd data-surface="surfaceRevenue">—</dd>
 <dt>Total del presupuesto sin IVA</dt><dd data-surface="revenue">—</dd>
 <dt>IVA del ejemplo (21 %)</dt><dd data-surface="vat">—</dd>
 <dt>Total para el cliente con 21 %</dt><dd data-surface="totalWithVAT">—</dd>
@@ -165,7 +165,7 @@
 <dt>Disponible antes de gastos fijos y cuotas</dt><dd data-surface="contribution">—</dd>
 <dt>Disponible por hora-persona total</dt><dd data-surface="perHour">—</dd>
 <dt>Base total necesaria para vuestro objetivo</dt><dd data-surface="minimumRevenue">—</dd>
-<dt>Precio por m² necesario con esos extras</dt><dd data-surface="quotedMinimumRate">—</dd></dl><p class="model-warning" id="surface-verdict"></p><p class="small">El disponible todavía tiene que cubrir gastos fijos, RETA, IRPF, reservas y remunerar vuestro trabajo. <strong>No es beneficio neto ni sueldo.</strong></p><p class="tiny">El precio por m² necesario se redondea hacia arriba al céntimo y mantiene los extras que has indicado. Revisad el alcance y un mínimo por encargo antes de enviarlo.</p></div></div></div>
+<dt>Precio por m² necesario con esos extras</dt><dd data-surface="quotedMinimumRate">—</dd></dl><p class="model-warning" id="surface-verdict"></p><p class="small">El disponible todavía tiene que cubrir gastos fijos, RETA, IRPF, reservas y remunerar vuestro trabajo. <strong>No es beneficio neto ni sueldo.</strong></p><p class="tiny">El precio por m² necesario se redondea hacia arriba al céntimo y mantiene los extras que has indicado. Revisad el alcance y un mínimo por encargo antes de enviarlo.</p><button type="button" class="btn" id="surface-edit">Ajustar los datos</button></div></div></div>
 <p class="small">El IVA mostrado es un ejemplo al 21 % y no aumenta vuestro margen. El tipo aplicable debe comprobarse según la operación; ver <a href="#precios">condiciones y fuentes en «Qué cobrar»</a>. Los resultados no se envían al cliente.</p>
 <hr class="rule"><h2>Comprobar otro trabajo a precio cerrado</h2>
 <p class="section-intro">Ejemplo editable con cifras inventadas para explicar el cálculo. No son precios recomendados, costes reales vuestros ni medias de Sevilla. Trabajad con importes sin IVA para comparar; comunicad al cliente el total que corresponda.</p>
@@ -230,6 +230,6 @@
 </main>
 <script src="economics.js"></script>
 <script src="surface.js"></script>
-<script src="estudio.js"></script>
+<script src="estudio.js?v=20261009-movil"></script>
 </body>
 </html>

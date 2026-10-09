@@ -5,9 +5,23 @@ document.addEventListener('keydown', event => {
 }, true);
 document.addEventListener('pointerdown', () => document.documentElement.classList.remove('keyboard-navigation'), true);
 const buttons=[...document.querySelectorAll('[data-tab]')];
-function showTab(id,focus=false){if(!document.getElementById('tab-'+id))id='decision';buttons.forEach(b=>{const active=b.dataset.tab===id;b.setAttribute('aria-selected',String(active));b.tabIndex=active?0:-1;document.getElementById(b.dataset.tab).hidden=!active;if(active&&focus)b.focus()});try{history.replaceState(null,'','#'+id)}catch(_){} }
+function showTab(id,focus=false){if(!document.getElementById('tab-'+id))id='decision';const changed=buttons.some(b=>b.getAttribute('aria-selected')==='true'&&b.dataset.tab!==id);buttons.forEach(b=>{const active=b.dataset.tab===id;b.setAttribute('aria-selected',String(active));b.tabIndex=active?0:-1;document.getElementById(b.dataset.tab).hidden=!active;if(active&&focus)b.focus()});const menu=document.getElementById('mobile-section');if(menu)menu.value=id;try{history.replaceState(null,'','#'+id)}catch(_){}if(changed)document.getElementById(id).scrollIntoView({block:'start'});}
 buttons.forEach((b,i)=>{b.addEventListener('click',()=>showTab(b.dataset.tab));b.addEventListener('keydown',e=>{let n;if(e.key==='ArrowRight')n=(i+1)%buttons.length;if(e.key==='ArrowLeft')n=(i-1+buttons.length)%buttons.length;if(e.key==='Home')n=0;if(e.key==='End')n=buttons.length-1;if(n!==undefined){e.preventDefault();showTab(buttons[n].dataset.tab,true)}})});
 showTab(location.hash.slice(1)||'decision');window.addEventListener('hashchange',()=>showTab(location.hash.slice(1)));
+document.getElementById('mobile-section')?.addEventListener('change',event=>showTab(event.target.value));
+// Keep each table's headers available when its rows stack on a small screen.
+document.querySelectorAll('.table-wrap').forEach(wrapper=>{
+  const table=wrapper.querySelector('table');
+  const headings=[...table.querySelectorAll('thead th')].map(cell=>cell.textContent.trim());
+  if(!headings.length)return;
+  table.setAttribute('role','table');
+  table.querySelectorAll('thead,tbody').forEach(group=>group.setAttribute('role','rowgroup'));
+  table.querySelectorAll('tr').forEach(row=>row.setAttribute('role','row'));
+  table.querySelectorAll('thead th').forEach(cell=>{cell.scope='col';cell.setAttribute('role','columnheader')});
+  table.querySelectorAll('tbody tr').forEach(row=>[...row.cells].forEach((cell,index)=>{cell.dataset.label=headings[index]||'';cell.setAttribute('role','cell')}));
+  wrapper.classList.add('mobile-readable');
+});
+document.querySelectorAll('input[type="number"]').forEach(field=>field.setAttribute('inputmode','decimal'));
 const tasks=[...document.querySelectorAll('[data-task]')],key='lyl-plan-20261009-v1';let state={};try{state=JSON.parse(localStorage.getItem(key)||'{}');if(!state||Array.isArray(state)||typeof state!=='object')state={}}catch(_){state={}}
 function updateTasks(){const n=tasks.filter(t=>t.checked).length;document.getElementById('progress').value=n;document.getElementById('progress-label').textContent=n+' de '+tasks.length;try{localStorage.setItem(key,JSON.stringify(Object.fromEntries(tasks.map(t=>[t.dataset.task,t.checked]))))}catch(_){document.getElementById('storage-note').textContent='El navegador no permite guardar las casillas: se conservarán solo mientras esta página esté abierta.'}}
 tasks.forEach(t=>{t.checked=state[t.dataset.task]===true;t.addEventListener('change',updateTasks)});updateTasks();document.getElementById('reset-tasks').addEventListener('click',()=>{tasks.forEach(t=>t.checked=false);updateTasks()});
@@ -134,7 +148,20 @@ let opened=[];window.addEventListener('beforeprint',()=>{opened=[...document.que
   } catch (_) { storageAvailable = false; }
   if (!restored) fill(model.defaults);
   form.addEventListener('input', render);
-  form.addEventListener('submit', event => event.preventDefault());
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    render();
+    const invalid=form.querySelector('[aria-invalid="true"]');
+    if(invalid){invalid.focus();return;}
+    const output=byId('surface-output');
+    output.focus({preventScroll:true});
+    output.scrollIntoView({block:'start'});
+  });
+  byId('surface-edit')?.addEventListener('click',()=>{
+    const field=byId('surface-area');
+    field.focus({preventScroll:true});
+    field.scrollIntoView({block:'center'});
+  });
   byId('surface-reset').addEventListener('click', () => { fill(model.defaults); render(); });
   render();
 })();

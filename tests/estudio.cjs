@@ -30,7 +30,9 @@ async function noOverflow(page, label) {
   assert.ok(geometry.root <= geometry.width + 1 && geometry.body <= geometry.width + 1, label + ': ' + JSON.stringify(geometry));
 }
 async function showTab(page, id) {
-  await page.locator('#tab-' + id).click();
+  const mobile = page.locator('#mobile-section');
+  if (await mobile.isVisible()) await mobile.selectOption(id);
+  else await page.locator('#tab-' + id).click();
   assert.equal(await page.locator('#' + id).isVisible(), true, id + ' must be visible.');
   assert.equal(await page.locator('#tab-' + id).getAttribute('aria-selected'), 'true');
   assert.equal(new URL(page.url()).hash, '#' + id);
@@ -110,7 +112,7 @@ async function expectSurface(page, expected, label) {
       page.on('response', response => { if (response.status() >= 400) httpErrors.push({ url: response.url(), status: response.status() }); });
       const session = { context, page, external, errors, httpErrors }; sessions.push(session);
       await page.goto(origin + '/estudio.html' + hash, { waitUntil: 'networkidle' });
-      await page.locator('[role="tab"][aria-selected="true"]').waitFor();
+      await page.locator('[role="tab"][aria-selected="true"]').waitFor({ state: 'attached' });
       return session;
     }
 
@@ -128,7 +130,7 @@ async function expectSurface(page, expected, label) {
         await noOverflow(page, width + ' / ' + id);
       }
       await showTab(page, 'decision');
-      if (width !== 320) {
+      {
         for (const photo of await page.locator('#decision figure img').all()) { await photo.scrollIntoViewIfNeeded(); await photo.evaluate(image => image.decode()); }
         await page.evaluate(() => scrollTo(0, 0));
         await page.screenshot({ path: path.join(output, 'estudio-' + width + '-portada.png'), fullPage: true });
@@ -138,15 +140,123 @@ async function expectSurface(page, expected, label) {
       if (width !== 320) await page.screenshot({ path: path.join(output, 'estudio-' + width + '-beneficios.png'), fullPage: true });
       await showTab(page, 'numeros');
       await expectSurface(page, surfaceDefault, width + 'px surface defaults');
-      if (width !== 320) {
+      {
         await page.evaluate(() => scrollTo(0, 0));
         await page.screenshot({ path: path.join(output, 'estudio-' + width + '-cotizar-viewport.png'), fullPage: false });
         await page.locator('#surface-output').screenshot({ path: path.join(output, 'estudio-' + width + '-superficie-resultados.png') });
       }
     });
 
+    for (const width of [320, 390]) {
+      await test(width + 'px: sticky section selector and long-page CTA arrive at the new section start', async () => {
+        const { page } = await open({ width, hash: '#precios' });
+        const menu = page.locator('#mobile-section');
+        assert.equal(await menu.isVisible(), true);
+        assert.equal(await page.locator('[role="tablist"]').isVisible(), false, 'Do not keep a second horizontal menu on mobile.');
+        assert.deepEqual(await menu.locator('option').evaluateAll(items => items.map(item => item.value)), tabs);
+        assert.ok((await menu.locator('option').allTextContents()).every(text => text.trim().length > 0));
+        assert.equal(await page.locator('label[for="mobile-section"]').isVisible(), true);
+        const menuSize = await menu.boundingBox();
+        assert.ok(menuSize.height >= 44 && menuSize.width > 150, 'Section selector has a usable touch target.');
+        assert.ok(await menu.evaluate(node => parseFloat(getComputedStyle(node).fontSize) >= 16), 'Selector text does not trigger small-input zoom.');
+        const link = page.locator('#precios a[href="#numeros"]');
+        await link.scrollIntoViewIfNeeded();
+        const previousScroll = await page.evaluate(() => scrollY);
+        assert.ok(previousScroll > 844, 'Exercise the CTA after a long page, not from its initial position.');
+        const sticky = await page.locator('nav').boundingBox();
+        assert.ok(Math.abs(sticky.y) <= 1, 'Navigation remains reachable at the top during the scroll.');
+        await link.tap();
+        await page.waitForFunction(() => location.hash === '#numeros' && !document.getElementById('numeros').hidden);
+        assert.equal(await menu.inputValue(), 'numeros');
+        const destination = await page.locator('#numeros').boundingBox();
+        const nav = await page.locator('nav').boundingBox();
+        assert.ok(destination.y >= nav.y + nav.height && destination.y <= nav.y + nav.height + 45, 'New section heading must be visible immediately below the sticky navigation: ' + JSON.stringify({ destination, nav }));
+        assert.ok(await page.evaluate(() => scrollY) < previousScroll, 'Changing sections must not strand readers among later results.');
+        await page.screenshot({ path: path.join(output, 'estudio-' + width + '-cotizar-inicio-movil.png') });
+        await page.locator('#surface-edit').scrollIntoViewIfNeeded();
+        await menu.selectOption('decision');
+        assert.equal(await page.locator('#decision').isVisible(), true);
+        const summary = await page.locator('#decision').boundingBox();
+        assert.ok(summary.y >= nav.height && summary.y <= nav.height + 45, 'Selector returns to the beginning of the chosen section.');
+        await noOverflow(page, width + 'px section navigation');
+      });
+
+      await test(width + 'px: every table reads vertically with its complete values and column labels', async () => {
+        const { page } = await open({ width });
+        let tablesChecked = 0;
+        for (const id of tabs) {
+          await showTab(page, id);
+          for (const wrapper of await page.locator('#' + id + ' .table-wrap').all()) {
+            const mobile = await wrapper.evaluate(node => {
+              const table = node.querySelector('table');
+              const headings = [...table.querySelectorAll('thead th')].map(cell => cell.textContent.trim());
+              const rows = [...table.querySelectorAll('tbody tr')].map(row => [...row.cells].map((cell, index) => ({ text: cell.textContent.trim(), label: cell.dataset.label, role: cell.getAttribute('role'), display: getComputedStyle(cell).display, width: cell.getBoundingClientRect().width, height: cell.getBoundingClientRect().height, before: index ? getComputedStyle(cell, '::before').content : null })));
+              return { headings, rows, role: table.getAttribute('role'), client: node.clientWidth, scroll: node.scrollWidth, stacked: node.classList.contains('mobile-readable') };
+            });
+            assert.ok(mobile.stacked, id + ': each data table has a small-screen presentation.');
+            assert.ok(mobile.scroll <= mobile.client + 1, id + ': no horizontal table scrolling.');
+            assert.equal(mobile.role, 'table', 'The stacked layout keeps table semantics.');
+            assert.ok(mobile.rows.length > 0 && mobile.headings.length > 1);
+            for (const row of mobile.rows) {
+              assert.equal(row.length, mobile.headings.length, id + ': no data column is omitted.');
+              row.forEach((cell, index) => {
+                assert.ok(cell.text.length > 0 && cell.height > 0, id + ': every value stays readable.');
+                assert.equal(cell.display, 'block');
+                assert.equal(cell.role, 'cell');
+                assert.equal(cell.label, mobile.headings[index]);
+                if (index) assert.equal(cell.before.replace(/^"|"$/g, ''), mobile.headings[index], id + ': values show their own column labels.');
+              });
+            }
+            await page.setViewportSize({ width: 1440, height: 1000 });
+            const desktopText = await wrapper.locator('tbody tr').evaluateAll(rows => rows.map(row => [...row.cells].map(cell => cell.textContent.trim())));
+            assert.deepEqual(desktopText, mobile.rows.map(row => row.map(cell => cell.text)), 'Mobile preserves all desktop data.');
+            await page.setViewportSize({ width, height: 844 });
+            tablesChecked++;
+          }
+          await noOverflow(page, width + 'px stacked tables / ' + id);
+        }
+        assert.ok(tablesChecked >= 4, 'Check all substantial market, pricing and scenario tables.');
+        await showTab(page, 'precios');
+        const firstTable = page.locator('#precios .table-wrap').first();
+        await firstTable.evaluate(node => node.scrollIntoView({ block: 'start' }));
+        await page.screenshot({ path: path.join(output, 'estudio-' + width + '-precios-tabla-movil.png') });
+      });
+
+      await test(width + 'px: touch shortcuts show area results, return to editing and reject incomplete quotes', async () => {
+        const { page } = await open({ width, hash: '#numeros' });
+        for (const field of await page.locator('#surface-form input').all()) {
+          assert.equal(await field.getAttribute('inputmode'), 'decimal');
+          const geometry = await field.boundingBox();
+          assert.ok(geometry.height >= 44, 'Number fields have a usable touch height.');
+          assert.ok(await field.evaluate(node => parseFloat(getComputedStyle(node).fontSize) >= 16));
+        }
+        await setSurface(page, { area: 120, rate: 12 });
+        const submit = page.locator('#surface-see-results');
+        assert.ok((await submit.boundingBox()).height >= 44);
+        await submit.tap();
+        await expectSurface(page, { revenue: 1440, contribution: 1190, personHours: 32, perHour: 37.1875, quotedMinimumRate: 8.75 }, 'mobile changed quote');
+        assert.equal(await page.locator('#surface-output').evaluate(node => node === document.activeElement), true);
+        const result = await page.locator('#surface-output').boundingBox();
+        const nav = await page.locator('nav').boundingBox();
+        assert.ok(result.y >= nav.height && result.y <= nav.height + 45, 'Result heading is brought into view below the menu.');
+        assert.equal(await page.locator('#surface-output').evaluate(node => getComputedStyle(node).outlineStyle), 'none', 'Touching the result shortcut must not create a decorative frame.');
+        await page.screenshot({ path: path.join(output, 'estudio-' + width + '-m2-resultado-movil.png') });
+        await page.locator('#surface-edit').tap();
+        assert.equal(await page.locator('#surface-area').evaluate(node => node === document.activeElement), true);
+        assert.equal(await page.locator('#surface-area').inputValue(), '120', 'The edit shortcut preserves all values.');
+        const field = await page.locator('#surface-area').boundingBox();
+        assert.ok(field.y >= nav.height && field.y + field.height <= 844, 'Editing returns to a visible field.');
+        await page.locator('#surface-area').fill('');
+        await submit.tap();
+        assert.equal(await page.locator('#surface-output').isVisible(), false, 'Invalid inputs never reveal old quote results.');
+        assert.equal(await page.locator('#surface-error').isVisible(), true);
+        assert.equal(await page.locator('#surface-area').evaluate(node => node === document.activeElement), true, 'The shortcut directs the reader to the missing value.');
+        await noOverflow(page, width + 'px mobile quote shortcuts');
+      });
+    }
+
     await test('Direct benefit links, invalid hashes and keyboard navigation', async () => {
-      const { page } = await open({ hash: '#beneficios' });
+      const { page } = await open({ width: 1440, hash: '#beneficios' });
       assert.equal(await page.locator('#beneficios').isVisible(), true);
       await page.locator('#tab-beneficios').focus(); await page.keyboard.press('ArrowRight');
       assert.equal(await page.locator('#tab-captacion').evaluate(node => node === document.activeElement), true);
