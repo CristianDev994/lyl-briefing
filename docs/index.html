@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#17272f">
+  <meta name="description" content="Cuestionario de L&L Multiservicios para preparar su estrategia y su próxima web en Sevilla.">
+  <title>L&L · Preparemos vuestra web</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="questionnaire.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#questionnaire">Ir al cuestionario</a>
+  <header class="header">
+    <a class="brand" href="./" aria-label="L&L, inicio del cuestionario"><img src="assets/logo.png" alt="L&L Multiservicios" width="72" height="72"><span>Vuestra próxima web<small>Cuestionario para L&L</small></span></a>
+    <a class="study-link" href="estudio.html">Ver estudio de Sevilla</a>
+  </header>
+  <main class="layout">
+    <aside class="sidebar">
+      <p class="eyebrow">L&L Multiservicios · Sevilla</p>
+      <h1>Primero, conocer<br>cómo trabajáis.</h1>
+      <p>Estas respuestas ayudarán a vuestro programador a definir los servicios, las zonas y el contenido de vuestra web.</p>
+      <div class="duration"><span>Unos 10–15 minutos</span><span>Podéis continuar más tarde</span></div>
+      <nav id="step-nav" aria-label="Pasos del cuestionario"></nav>
+      <div class="side-note"><strong>Responded con vuestra realidad.</strong><p>No hace falta tenerlo todo decidido. Podéis indicar que algo está pendiente; lo resolveremos al preparar la web.</p></div>
+    </aside>
+    <div class="workspace">
+      <div class="mobile-intro"><h1>Preparemos vuestra web</h1><p>Contadnos cómo trabajáis para definir una web que os represente y facilite nuevos contactos.</p><span>10–15 min · Podéis continuar después</span></div>
+      <div class="progress-top"><span id="step-position">Paso 1 de 8</span><span id="draft-state" role="status">Borrador en este dispositivo</span></div>
+      <progress id="progress" max="8" value="1" aria-label="Progreso del cuestionario"></progress>
+      <div id="storage-warning" class="notice" hidden></div>
+      <form id="questionnaire" novalidate>
+        <div id="step-content"></div>
+        <div id="validation-summary" class="validation" role="alert" tabindex="-1" hidden></div>
+        <div class="actions" id="step-actions"><button class="button secondary" type="button" id="previous">Anterior</button><span class="action-spacer"></span><button class="button primary" type="submit" id="next">Continuar</button></div>
+      </form>
+      <p class="data-note">Las respuestas no se publican en la web ni se suben a GitHub. El borrador se guarda en este navegador; si cambiáis de móvil o borráis sus datos, necesitaréis una copia para recuperarlo. El programador recibe las respuestas cuando las enviáis por WhatsApp. No escribáis contraseñas, datos bancarios ni información privada de vuestros clientes.</p>
+      <div class="draft-tools"><button class="text-button" id="backup" type="button">Guardar copia del borrador</button><label class="text-button file-label" for="restore-file">Recuperar una copia</label><input id="restore-file" type="file" accept="application/json,.json" hidden><button class="text-button" type="button" id="clear">Borrar mis respuestas</button></div>
+      <div id="feedback" role="status" aria-live="polite"></div>
+      <footer><a href="estudio.html">Consultar el estudio y el plan de captación</a><p>Cuestionario de preparación para L&L. La futura web comercial se definirá con vuestras respuestas.</p></footer>
+    </div>
+  </main>
+  <dialog id="clear-dialog"><h2>¿Borrar las respuestas de este dispositivo?</h2><p>Se eliminará el borrador guardado en este navegador. Una copia que hayáis descargado no se borra.</p><div class="dialog-actions"><button class="button secondary" id="cancel-clear">Conservar</button><button class="button danger" id="confirm-clear">Borrar respuestas</button></div></dialog>
+  <dialog id="replace-dialog"><h2>Recuperar una copia guardada</h2><p>La copia sustituirá las respuestas que tenéis abiertas. Podéis cancelar y guardar antes vuestro borrador actual.</p><div class="dialog-actions"><button class="button secondary" id="cancel-restore">Cancelar</button><button class="button primary" id="confirm-restore">Recuperar copia</button></div></dialog>
+  <noscript><div class="noscript">Para rellenar y guardar el cuestionario, activad JavaScript en vuestro navegador. Podéis consultar el <a href="estudio.html">estudio de mercado</a>.</div></noscript>
+</body>
+</html>

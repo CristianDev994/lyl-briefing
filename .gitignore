@@ -1,0 +1,8 @@
+test-results/
+node_modules/
+*.log
+.env
+.env.*
+responses/
+respuestas-*.json
+respuestas-*.txt
